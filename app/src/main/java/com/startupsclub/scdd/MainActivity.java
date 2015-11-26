@@ -12,9 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView subtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        subtitle = (TextView) findViewById(R.id.subtitle);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,17 +77,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            subtitle.setText("Home");
         } else if (id == R.id.nav_profile) {
-
+            subtitle.setText("Profile");
         } else if (id == R.id.nav_sync) {
-
+            subtitle.setText("Sync");
         } else if (id == R.id.nav_terms) {
-
+            subtitle.setText("Terms and Conditions");
         } else if (id == R.id.nav_privacy) {
-
+            subtitle.setText("Privacy Policy");
         } else if (id == R.id.nav_logout) {
-
+            subtitle.setText("Logout");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
