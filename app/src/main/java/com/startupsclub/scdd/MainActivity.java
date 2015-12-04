@@ -1,9 +1,9 @@
 package com.startupsclub.scdd;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,10 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView subtitle;
+    private List<City> cityList;
+    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,23 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+        cityList = new ArrayList<>();
+        cityList.add(new City("Mumbai", "23rd November"));
+        cityList.add(new City("Delhi", "24th November"));
+        cityList.add(new City("Hyderabad", "25th November"));
+
+        rv = (RecyclerView) findViewById(R.id.rv);
+
+        GridLayoutManager llm = new GridLayoutManager(MainActivity.this, 2);
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
+
+        RVAdapter adapter = new RVAdapter(cityList);
+        rv.setAdapter(adapter);
     }
 
     @Override
@@ -78,8 +100,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             subtitle.setText("Home");
+            getSupportFragmentManager().popBackStack(null, android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
         } else if (id == R.id.nav_profile) {
             subtitle.setText("Profile");
+            navigationMenuAction(1);
         } else if (id == R.id.nav_sync) {
             subtitle.setText("Sync");
         } else if (id == R.id.nav_terms) {
@@ -93,5 +118,27 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void navigationMenuAction(int position){
+        final Fragment fragment;
+        switch (position) {
+            case 1:
+                fragment = new Profile();
+                break;
+//            case 3:
+//                fragment = new Terms();
+//                break;
+//            case 4:
+//                fragment = new Privacy();
+//                break;
+            default:
+                fragment = new Profile();
+                break;
+        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_cities,fragment,"1st page")
+                .addToBackStack(null)
+                .commit();
     }
 }
