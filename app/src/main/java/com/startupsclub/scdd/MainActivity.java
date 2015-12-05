@@ -107,12 +107,16 @@ public class MainActivity extends AppCompatActivity
             navigationMenuAction(1);
         } else if (id == R.id.nav_sync) {
             subtitle.setText("Sync");
+            navigationMenuAction(2);
         } else if (id == R.id.nav_terms) {
             subtitle.setText("Terms and Conditions");
+            navigationMenuAction(3);
         } else if (id == R.id.nav_privacy) {
             subtitle.setText("Privacy Policy");
+            navigationMenuAction(4);
         } else if (id == R.id.nav_logout) {
             subtitle.setText("Logout");
+            navigationMenuAction(5);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -126,12 +130,12 @@ public class MainActivity extends AppCompatActivity
             case 1:
                 fragment = new Profile();
                 break;
-//            case 3:
-//                fragment = new Terms();
-//                break;
-//            case 4:
-//                fragment = new Privacy();
-//                break;
+            case 3:
+                fragment = new Terms();
+                break;
+            case 4:
+                fragment = new Privacy();
+                break;
             default:
                 fragment = new Profile();
                 break;
