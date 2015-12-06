@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-        RVAdapter adapter = new RVAdapter(cityList);
+        RVAdapter adapter = new RVAdapter(cityList,this);
         rv.setAdapter(adapter);
     }
 
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new Terms();
                 break;
             case 4:
-                fragment = new Privacy();
+                fragment = new AgendaFragment();
                 break;
             default:
                 fragment = new Profile();

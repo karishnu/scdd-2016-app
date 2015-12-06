@@ -4,31 +4,30 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bck"
     android:descendantFocusability="beforeDescendants"
-     android:focusableInTouchMode="true" 
-   >
-<RelativeLayout
-    android:id="@+id/linear1"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
 
-          android:background="#ef6c00"
-       >
+        android:background="#ef6c00">
 
 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-
-        android:text="Update Account"
-        android:textColor="#ffffff"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="Update Account"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
@@ -36,92 +35,89 @@
 
         android:layout_below="@+id/linear1"
         android:layout_marginBottom="34dp"
-        android:background="@drawable/login_background"
-        >
+        android:background="@drawable/login_background">
 
         <EditText
             android:id="@+id/pass_edtext"
             android:layout_width="fill_parent"
-             android:layout_height="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-             android:hint="Password"
-              android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-              android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-             android:background="@drawable/simple_round_black"
-               android:inputType="textPassword"
-             >
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/simple_round_black"
+            android:hint="Password"
+            android:inputType="textPassword">
 
             <requestFocus />
         </EditText>
-         <EditText
-        android:id="@+id/cmp_edtext"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/pass_edtext"
-       android:layout_marginBottom="10dp"
-             android:hint="Company Name"
-             android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/simple_round_black"
-      />
-         
-         <EditText
-        android:id="@+id/desg_edtext"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_centerHorizontal="true"
-         android:layout_below="@+id/cmp_edtext"
-       
-         android:layout_marginBottom="10dp"
-                android:hint="Designation"
-              
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/simple_round_black"
-        android:inputType="textEmailAddress" />
-         
-    <EditText
-        android:id="@+id/add_edtext"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_centerHorizontal="true"
-          android:layout_marginBottom="10dp"
-                android:hint="Address"
-                       android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="3dp"
-          android:layout_below="@+id/desg_edtext"
-          android:background="@drawable/simple_round_black"
-       
-        android:inputType="textPostalAddress"/>
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_edtext"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_face_white_48dp" />
+        <EditText
+            android:id="@+id/cmp_edtext"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/pass_edtext"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/simple_round_black"
+            android:hint="Company Name" />
 
-    <Button
-        android:id="@+id/submit_bt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-             android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-        android:layout_below="@+id/imageButton2"
-        android:background="@drawable/layout_round_orange_button"
-       android:text="Update"
+        <EditText
+            android:id="@+id/desg_edtext"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/cmp_edtext"
+            android:layout_centerHorizontal="true"
 
-        android:textColor="#ffffff" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+
+            android:layout_marginRight="20dp"
+            android:background="@drawable/simple_round_black"
+            android:hint="Designation"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/add_edtext"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/desg_edtext"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/simple_round_black"
+            android:hint="Address"
+
+            android:inputType="textPostalAddress" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/add_edtext"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_face_white_48dp" />
+
+        <Button
+            android:id="@+id/submit_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageButton2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/layout_round_orange_button"
+            android:text="Update"
+
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
 
-    
 
 </RelativeLayout>
