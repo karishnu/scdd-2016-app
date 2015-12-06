@@ -1,44 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    
-    android:descendantFocusability="beforeDescendants"
+    android:layout_height="match_parent"
     android:background="@drawable/login_bck"
-    android:focusableInTouchMode="true" >
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
-  
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/login_background">
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-           android:layout_marginTop="45dp"
-           android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/login_background">
+            android:id="@+id/relu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
 
-            <TextView
-                android:id="@+id/forgot_passwd_tv"
+            <EditText
+                android:id="@+id/username_edtext"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/simple_round_black"
+                android:hint="Enter your name"
+                android:inputType="text"
+                android:paddingLeft="5dp">
+                <requestFocus />
+            </EditText>
+
+            <ImageView
+                android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/login_button"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="15dp"
-                android:onClick="forgot_password"
-                android:text="Lost your password?"
-                android:textSize="12sp" />
-<RelativeLayout 
-    android:id="@+id/relp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="3dp"
-                 android:layout_marginBottom="15dp"
-                  android:layout_below="@+id/relu"
-               
-               >
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:alpha="0.4"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:paddingRight="3dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relu"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="3dp">
+
             <EditText
                 android:id="@+id/passwd_edtext"
                 android:layout_width="fill_parent"
@@ -46,75 +59,54 @@
                 android:background="@drawable/simple_round_black"
                 android:hint="Password"
                 android:inputType="textPassword"
-                 >
-                
-            </EditText>
-            
+                android:paddingLeft="5dp"/>
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 android:layout_alignParentRight="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:alpha="0.4"
                 android:src="@drawable/ic_https_black_24dp"
-                android:alpha="0.4" />
-            </RelativeLayout>
-<RelativeLayout 
-    android:id="@+id/relu"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    
-                android:layout_margin="15dp">
-            <EditText
-                android:id="@+id/username_edtext"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-               
-                android:background="@drawable/simple_round_black"
-           
-                android:hint="Enter your name"
-                android:inputType="text"
-                >
-
-                <requestFocus />
-                </EditText>
-                
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_account_circle_black_24dp" 
-                android:alpha="0.4"/>
-</RelativeLayout>
-            <Button
-                android:id="@+id/login_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/relp"
-                android:background="@drawable/layout_round_orange_button"
-                android:text="Login"
-                android:textColor="#ffffff"
-                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:onClick="login"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/newusr_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/forgot_passwd_tv"
-                android:text="New User"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:onClick="signup"
-                android:textSize="12sp" />
-
-            
-
-
+                android:paddingRight="3dp"/>
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/login_button_selector"
+            android:onClick="login"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/forgot_passwd_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"
+            android:onClick="forgot_password"
+            android:text="Lost your password?"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/newusr_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/forgot_passwd_tv"
+            android:onClick="signup"
+            android:text="New User"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
 </RelativeLayout>
