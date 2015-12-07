@@ -119,8 +119,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             subtitle.setText("Logout");
             navigationMenuAction(5);
-        }
-        else if (id == R.id.events) {
+        } else if (id == R.id.nav_events) {
             subtitle.setText("Upcoming Events");
             navigationMenuAction(6);
         }

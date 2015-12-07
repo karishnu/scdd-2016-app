@@ -31,7 +31,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
 
         EventsViewHolder(View view) {
             super(view);
-            cv = (CardView)view.findViewById(R.id.cv);
+            cv = (CardView)view.findViewById(R.id.events_cv);
             year = (TextView)view.findViewById(R.id.event_year);
             date= (TextView)view.findViewById(R.id.event_date);
             day= (TextView)view.findViewById(R.id.event_wday);
@@ -60,9 +60,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
         h.day.setText(list.get(i).get_day());
         h.title.setText(list.get(i).get_title());
         h.venue.setText(list.get(i).get_venue());
-
-
-
     }
 
 
