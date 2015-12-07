@@ -1,5 +1,6 @@
 package com.startupsclub.scdd;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView subtitle;
+
     private List<City> cityList;
     private RecyclerView rv;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null)
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         subtitle = (TextView) findViewById(R.id.subtitle);
 
@@ -42,22 +45,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-
         cityList = new ArrayList<>();
         cityList.add(new City("Mumbai", "23rd November"));
         cityList.add(new City("Delhi", "24th November"));
         cityList.add(new City("Hyderabad", "25th November"));
 
-        rv = (RecyclerView) findViewById(R.id.rv);
+        rv = (RecyclerView)findViewById(R.id.rv);
 
-        GridLayoutManager llm = new GridLayoutManager(MainActivity.this, 2);
+        GridLayoutManager llm = new GridLayoutManager(this, 2);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
         RVAdapter adapter = new RVAdapter(cityList,this);
         rv.setAdapter(adapter);
+
+
     }
 
     @Override
@@ -118,7 +120,10 @@ public class MainActivity extends AppCompatActivity
             subtitle.setText("Logout");
             navigationMenuAction(5);
         }
-
+        else if (id == R.id.events) {
+            subtitle.setText("Upcoming Events");
+            navigationMenuAction(6);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -136,10 +141,14 @@ public class MainActivity extends AppCompatActivity
             case 4:
                 fragment = new AgendaFragment();
                 break;
+            case 6:
+                fragment = new EventsFragment();
+                break;
             default:
                 fragment = new Profile();
                 break;
         }
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_cities,fragment,"1st page")
                 .addToBackStack(null)
