@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,16 +17,16 @@ public class AgendaRVAdapter extends RecyclerView.Adapter<AgendaRVAdapter.Agenda
 
     public static class AgendaViewHolder extends RecyclerView.ViewHolder {
 
-        CardView cv;
         TextView agendaTime;
         TextView agendaEvent;
+        ImageView agenda_green_line;
 
 
         AgendaViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.agenda_cv);
             agendaTime = (TextView)itemView.findViewById(R.id.agenda_time);
             agendaEvent = (TextView)itemView.findViewById(R.id.agenda_event);
+            agenda_green_line = (ImageView) itemView.findViewById(R.id.agenda_green_line);
         }
     }
 
@@ -42,7 +43,7 @@ public class AgendaRVAdapter extends RecyclerView.Adapter<AgendaRVAdapter.Agenda
 
     @Override
     public AgendaViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.agenda_card_layout, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.agenda_row_layout, viewGroup, false);
         AgendaViewHolder avh = new AgendaViewHolder(v);
         return avh;
     }
@@ -51,6 +52,10 @@ public class AgendaRVAdapter extends RecyclerView.Adapter<AgendaRVAdapter.Agenda
     public void onBindViewHolder(AgendaViewHolder personViewHolder, int i) {
         personViewHolder.agendaTime.setText(agendas.get(i).time);
         personViewHolder.agendaEvent.setText(agendas.get(i).event);
+
+        if (i==(agendas.size()-1)){
+            personViewHolder.agenda_green_line.setVisibility(View.GONE);
+        }
     }
 
     @Override

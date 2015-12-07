@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new Terms();
                 break;
             case 4:
-                fragment = new AgendaFragment();
+                fragment = new Privacy();
                 break;
             case 6:
                 fragment = new EventsFragment();

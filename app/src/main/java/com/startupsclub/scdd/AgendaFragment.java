@@ -1,5 +1,6 @@
 package com.startupsclub.scdd;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,12 +18,14 @@ import java.util.ArrayList;
 public class AgendaFragment extends Fragment {
     ArrayList<Agenda> agenda_list;
     RecyclerView agenda_rv;
+    Context context;
 
-    @Nullable
     @Override
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_agenda, container, false);
+
+        context = getActivity();
 
         agenda_list = new ArrayList<>();
 
@@ -31,7 +34,7 @@ public class AgendaFragment extends Fragment {
         agenda_list.add(new Agenda("9:30am - 10am","Speech"));
         agenda_list.add(new Agenda("9:30am - 10am","Speech"));
 
-        agenda_rv = new RecyclerView(getActivity());
+        agenda_rv = (RecyclerView) rootView.findViewById(R.id.agenda_rv);
 
         agenda_rv.setHasFixedSize(true);
 
