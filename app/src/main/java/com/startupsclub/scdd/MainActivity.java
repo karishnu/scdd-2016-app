@@ -1,6 +1,5 @@
 package com.startupsclub.scdd;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -136,24 +135,32 @@ public class MainActivity extends AppCompatActivity
         switch (position) {
             case 1:
                 fragment = new Profile();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case 3:
                 fragment = new TermsFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case 4:
                 fragment = new Privacy();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case 6:
                 fragment = new EventsFragment();
-                break;
-            default:
-                fragment = new Profile();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
+                        .commit();
                 break;
         }
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_cities,fragment,"1st page")
-                .addToBackStack(null)
-                .commit();
     }
 }
