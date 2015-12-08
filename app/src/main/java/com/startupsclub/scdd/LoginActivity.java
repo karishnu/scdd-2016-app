@@ -1,15 +1,28 @@
 package com.startupsclub.scdd;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.startupsclub.scdd.web.PostRequest;
+import com.startupsclub.scdd.web.PostRequest.PostRequestResponseHandler;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.Hashtable;
 
+
+public class LoginActivity extends AppCompatActivity implements PostRequestResponseHandler {
+
+
+    EditText ed1,ed2;
+    ProgressBar pb;
+    String username,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,17 +31,55 @@ public class LoginActivity extends AppCompatActivity {
         tv.setPaintFlags(tv.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
        TextView tv1=(TextView)findViewById(R.id.newusr_tv);
         tv1.setPaintFlags(tv.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
+
+        pb=(ProgressBar)findViewById(R.id.progressBar);
+        ed1=(EditText)findViewById(R.id.username_edtext);
+        ed2=(EditText)findViewById(R.id.passwd_edtext);
+        username=ed1.getText().toString();
+        password=ed2.getText().toString();
             }
 
    
     public void login(View view)
     {
     	//Perform login task here.
-    	finish();
-    	startActivity(new Intent(this,MainActivity.class));
+    	//finish();
+    	if(attempt_login()) {
+
+      pb.setVisibility(View.VISIBLE);
+            Hashtable<String,String> ht=new Hashtable<String,String>();
+            ht.put("username",ed1.getText().toString());
+            ht.put("password",ed2.getText().toString());
+
+            new PostRequest(ht,"http://myappserver.netau.net/SCDD/login.php").setListener(this);
+        }
 
     }
-    
+
+    public Boolean attempt_login(){
+
+        String email=ed1.getText().toString();
+        String pass=ed2.getText().toString();
+    if(!validateEmail(email)) {
+        ed1.setError("Invalid email !");
+        return false;
+    }
+      if(pass.length()<5)
+        {
+            ed2.setError("Atleast 5 characters req");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateEmail(String email)
+    {
+        if(email.contains("@"))
+            return true;
+            else
+                return  false;
+
+    }
     public void forgot_password(View view)
     {
     	//Perform forgor password task here
@@ -40,5 +91,26 @@ public class LoginActivity extends AppCompatActivity {
     	startActivity(new Intent(this,SignupActivity.class));
 
     }
-    
-}
+
+
+    @Override
+    public void postRequestResponse(String status) {
+pb.setVisibility(View.INVISIBLE);
+        Log.e("Response in activity", status + "");
+        if (status.equals("0"))
+            ed2.setError("Wrong Password");
+        if (status.equals("-1"))
+            ed1.setError("This username does't exists");
+        if (status.equals("1")) {
+
+            SharedPreferences.Editor pref=getSharedPreferences("login_data ",MODE_PRIVATE).edit();
+            pref.putString("username",username);
+            pref.putString("password",password);
+            pref.commit();
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        }
+    }
+
+
