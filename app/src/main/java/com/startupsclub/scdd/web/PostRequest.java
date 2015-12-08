@@ -1,7 +1,6 @@
 package com.startupsclub.scdd.web;
 
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
@@ -28,69 +27,65 @@ import java.util.Hashtable;
 public class PostRequest {
 
     private PostRequestResponseHandler resposeHandler;
-Context context;
-Hashtable hashtable;
+    Context context;
+    Hashtable hashtable;
     String url;
-    public PostRequest(Hashtable<String,String> ht,String url)
-    {
-        hashtable=ht;
-        this.url=url+"";
-        Log.e("url",this.url);
-        new AsyncPerformPostRequest().execute();
 
+    public PostRequest(Hashtable<String, String> ht, String url) {
+        hashtable = ht;
+        this.url = url + "";
+        Log.e("url", this.url);
+        new AsyncPerformPostRequest().execute();
     }
 
     public void setListener(PostRequestResponseHandler handler) {
         resposeHandler = handler;
     }
 
-    public class AsyncPerformPostRequest extends AsyncTask<Void,Void,String>{
+    public class AsyncPerformPostRequest extends AsyncTask<Void, Void, String> {
         String urlParams;
+
         @Override
         protected void onPreExecute() {
-          urlParams=getUrlParams(hashtable);
-            Log.e("UrlParameters:",urlParams+"");
+            urlParams = getUrlParams(hashtable);
+            Log.e("UrlParameters:", urlParams + "");
         }
 
         @Override
         protected String doInBackground(Void... params) {
 
-
-          String response="";
-         response= excutePost(url,urlParams);
-             Log.e("rerf",response+"....");
+            String response = "";
+            response = excutePost(url, urlParams);
+            Log.e("rerf", response + "....");
             return response;
         }
 
         @Override
         protected void onPostExecute(String response) {
-            String status="";
+            String status = "";
 
             try {
-                JSONObject jObject=new JSONObject(response);
+                JSONObject jObject = new JSONObject(response);
                 JSONArray jArray = jObject.getJSONArray("login");
-
-
-                    JSONObject jTemp = jArray.getJSONObject(0);
-                     status=jTemp.getString("status");
-                    Log.e("status",status+"");
+                JSONObject jTemp = jArray.getJSONObject(0);
+                status = jTemp.getString("status");
+                Log.e("status", status + "");
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
-                status="--1--";
+                status = "--1--";
                 e.printStackTrace();
             }
             resposeHandler.postRequestResponse(status);
         }
 
-        public String excutePost(String targetURL, String urlParameters)
-        {
+        public String excutePost(String targetURL, String urlParameters) {
             URL url;
             HttpURLConnection connection = null;
             try {
                 //Create connection
                 url = new URL(targetURL);
-                connection = (HttpURLConnection)url.openConnection();
+                connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type",
                         "application/x-www-form-urlencoded");
@@ -99,16 +94,16 @@ Hashtable hashtable;
                         Integer.toString(urlParameters.getBytes().length));
                 connection.setRequestProperty("Content-Language", "en-US");
 
-                connection.setUseCaches (false);
+                connection.setUseCaches(false);
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
 
                 //Send request
                 DataOutputStream wr = new DataOutputStream(
-                        connection.getOutputStream ());
-                wr.writeBytes (urlParameters);
-                wr.flush ();
-                wr.close ();
+                        connection.getOutputStream());
+                wr.writeBytes(urlParameters);
+                wr.flush();
+                wr.close();
 
                 //Get Response
                 InputStream is = connection.getInputStream();
@@ -131,23 +126,20 @@ Hashtable hashtable;
 
             } finally {
 
-                if(connection != null) {
+                if (connection != null) {
                     connection.disconnect();
                 }
             }
-
         }
-
     }
 
-
-    public String getUrlParams(Hashtable<String,String> params){
-        if(params.size() == 0)
+    public String getUrlParams(Hashtable<String, String> params) {
+        if (params.size() == 0)
             return "";
 
         StringBuffer buf = new StringBuffer();
         Enumeration<String> keys = params.keys();
-        while(keys.hasMoreElements()) {
+        while (keys.hasMoreElements()) {
             buf.append(buf.length() == 0 ? "" : "&");
             String key = keys.nextElement();
             buf.append(key).append("=").append(params.get(key));
@@ -157,10 +149,8 @@ Hashtable hashtable;
     }
 
 
-
-
-    public void displayDialog(String title,String message) {
-        AlertDialog ad=new AlertDialog.Builder(context).create();
+    public void displayDialog(String title, String message) {
+        AlertDialog ad = new AlertDialog.Builder(context).create();
         ad.setTitle(title);
         ad.setMessage(message);
         ad.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
@@ -176,9 +166,8 @@ Hashtable hashtable;
 
 
     public interface PostRequestResponseHandler {
-        public  void postRequestResponse(String st);
+        public void postRequestResponse(String st);
     }
-
 
 
 }
