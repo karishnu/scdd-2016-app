@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.startupsclub.scdd.RowElements.CEvents;
-import com.startupsclub.scdd.adapter.EventsAdapter;
+import com.startupsclub.scdd.Adapters.EventsAdapter;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,6 @@ Context context;
         View rootView = inflater.inflate(R.layout.layout_events, container, false);
 
         context = getActivity();
-
 
         RecyclerView recList = (RecyclerView)rootView.findViewById(R.id.eventsList);
         recList.setHasFixedSize(true);

@@ -1,6 +1,5 @@
 package com.startupsclub.scdd;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.startupsclub.scdd.RowElements.City;
+import com.startupsclub.scdd.Adapters.CityRVAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +24,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView subtitle;
-
-    private List<City> cityList;
-    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +35,8 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         subtitle = (TextView) findViewById(R.id.subtitle);
 
+        navigationMenuAction(0);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -44,22 +45,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        cityList = new ArrayList<>();
-        cityList.add(new City("Mumbai", "23rd November"));
-        cityList.add(new City("Delhi", "24th November"));
-        cityList.add(new City("Hyderabad", "25th November"));
-
-        rv = (RecyclerView)findViewById(R.id.rv);
-
-        GridLayoutManager llm = new GridLayoutManager(this, 2);
-        rv.setLayoutManager(llm);
-        rv.setHasFixedSize(true);
-
-        RVAdapter adapter = new RVAdapter(cityList,this);
-        rv.setAdapter(adapter);
-
-
     }
 
     @Override
@@ -102,13 +87,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             subtitle.setText("Home");
-            getSupportFragmentManager().popBackStack(null, android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
+            navigationMenuAction(0);
         } else if (id == R.id.nav_profile) {
             subtitle.setText("Profile");
             navigationMenuAction(1);
         } else if (id == R.id.nav_sync) {
-            subtitle.setText("Sync");
             navigationMenuAction(2);
         } else if (id == R.id.nav_terms) {
             subtitle.setText("Terms and Conditions");
@@ -117,7 +100,6 @@ public class MainActivity extends AppCompatActivity
             subtitle.setText("Privacy Policy");
             navigationMenuAction(4);
         } else if (id == R.id.nav_logout) {
-            subtitle.setText("Logout");
             navigationMenuAction(5);
         } else if (id == R.id.nav_events) {
             subtitle.setText("Upcoming Events");
@@ -131,27 +113,37 @@ public class MainActivity extends AppCompatActivity
     public void navigationMenuAction(int position){
         final Fragment fragment;
         switch (position) {
+            case 0:
+                fragment = new Home();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .commit();
+                break;
             case 1:
                 fragment = new Profile();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .commit();
                 break;
             case 3:
-                fragment = new Terms();
+                fragment = new TermsFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .commit();
                 break;
             case 4:
                 fragment = new Privacy();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .commit();
                 break;
             case 6:
                 fragment = new EventsFragment();
-                break;
-            default:
-                fragment = new Profile();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_cities,fragment,"1st page")
+                        .commit();
                 break;
         }
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_cities,fragment,"1st page")
-                .addToBackStack(null)
-                .commit();
     }
 
 

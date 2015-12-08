@@ -12,7 +12,6 @@
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-
         android:background="#ef6c00">
 
 
@@ -21,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-
             android:text="Update Account"
+            android:paddingLeft="6dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff" />
 
@@ -49,8 +48,8 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/simple_round_black"
             android:hint="Password"
+            android:paddingLeft="6dp"
             android:inputType="textPassword">
-
             <requestFocus />
         </EditText>
 
@@ -64,6 +63,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="3dp"
+            android:paddingLeft="6dp"
             android:background="@drawable/simple_round_black"
             android:hint="Company Name" />
 
@@ -73,10 +73,9 @@
             android:layout_height="35dp"
             android:layout_below="@+id/cmp_edtext"
             android:layout_centerHorizontal="true"
-
+            android:paddingLeft="6dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
-
             android:layout_marginRight="20dp"
             android:background="@drawable/simple_round_black"
             android:hint="Designation"
@@ -94,7 +93,7 @@
             android:layout_marginTop="3dp"
             android:background="@drawable/simple_round_black"
             android:hint="Address"
-
+            android:paddingLeft="6dp"
             android:inputType="textPostalAddress" />
 
         <ImageButton
@@ -109,15 +108,13 @@
             android:id="@+id/submit_bt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageButton2"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/layout_round_orange_button"
             android:text="Update"
-
-            android:textColor="#ffffff" />
+            android:layout_alignParentBottom="true"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="20dp"/>
 
     </RelativeLayout>
-
-
 </RelativeLayout>
