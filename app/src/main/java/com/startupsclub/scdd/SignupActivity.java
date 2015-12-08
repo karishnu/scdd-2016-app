@@ -24,7 +24,7 @@ public class SignupActivity extends AppCompatActivity{
 	        ln=(EditText)findViewById(R.id.ln_edtext);
 	        em=(EditText)findViewById(R.id.email_edtext);
 	        ph=(EditText)findViewById(R.id.ph_edtext);
-	        
+
 }
 
 	 
@@ -33,10 +33,10 @@ public class SignupActivity extends AppCompatActivity{
 		 finish();
 		 startActivity(new Intent(this,LoginActivity.class));
 	 }
-	 
+
 	 public void next(View view)
 	 {
-		 
+
 	 }
 	 public void back(View view)
 	 {
