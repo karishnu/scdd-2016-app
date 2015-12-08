@@ -47,7 +47,7 @@ public class CityRVAdapter extends RecyclerView.Adapter<CityRVAdapter.CityViewHo
 
     @Override
     public CityViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_layout, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cities_card_layout, viewGroup, false);
         CityViewHolder pvh = new CityViewHolder(v);
         return pvh;
     }

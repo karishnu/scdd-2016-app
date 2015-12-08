@@ -30,7 +30,6 @@ Context context;
 
         context = getActivity();
 
-
         RecyclerView recList = (RecyclerView)rootView.findViewById(R.id.eventsList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
