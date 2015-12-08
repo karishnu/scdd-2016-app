@@ -15,6 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.startupsclub.scdd.RowElements.City;
+import com.startupsclub.scdd.Adapters.CityRVAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-        RVAdapter adapter = new RVAdapter(cityList,this);
+        CityRVAdapter adapter = new CityRVAdapter(cityList,this);
         rv.setAdapter(adapter);
 
 
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity
             subtitle.setText("Sync");
             navigationMenuAction(2);
         } else if (id == R.id.nav_terms) {
-            subtitle.setText("Terms and Conditions");
+            subtitle.setText("TermsFragment and Conditions");
             navigationMenuAction(3);
         } else if (id == R.id.nav_privacy) {
             subtitle.setText("Privacy Policy");
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new Profile();
                 break;
             case 3:
-                fragment = new Terms();
+                fragment = new TermsFragment();
                 break;
             case 4:
                 fragment = new Privacy();

@@ -1,12 +1,14 @@
-package com.startupsclub.scdd;
+package com.startupsclub.scdd.Adapters;
 
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.startupsclub.scdd.RowElements.Agenda;
+import com.startupsclub.scdd.R;
 
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class AgendaRVAdapter extends RecyclerView.Adapter<AgendaRVAdapter.Agenda
 
     List<Agenda> agendas;
 
-    AgendaRVAdapter(List<Agenda> agendas){
+    public AgendaRVAdapter(List<Agenda> agendas){
         this.agendas = agendas;
     }
 

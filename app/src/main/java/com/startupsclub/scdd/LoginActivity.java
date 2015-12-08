@@ -14,31 +14,25 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        TextView tv=(TextView)findViewById(R.id.forgot_passwd_tv);
-        tv.setPaintFlags(tv.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
-       TextView tv1=(TextView)findViewById(R.id.newusr_tv);
-        tv1.setPaintFlags(tv.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
-            }
-
-   
-    public void login(View view)
-    {
-    	//Perform login task here.
-    	finish();
-    	startActivity(new Intent(this,MainActivity.class));
-
+        TextView tv = (TextView) findViewById(R.id.forgot_passwd_tv);
+        tv.setPaintFlags(tv.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        TextView tv1 = (TextView) findViewById(R.id.newusr_tv);
+        tv1.setPaintFlags(tv.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
-    
-    public void forgot_password(View view)
-    {
-    	//Perform forgor password task here
-    }
-    
-    public void signup(View view)
-    {
-    	finish();
-    	startActivity(new Intent(this,SignupActivity.class));
 
+    public void login(View view) {
+        //Perform login task here.
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
-    
+
+    public void forgot_password(View view) {
+        //Perform forgor password task here
+    }
+
+    public void signup(View view) {
+        finish();
+        startActivity(new Intent(this, SignupActivity.class));
+    }
+
 }

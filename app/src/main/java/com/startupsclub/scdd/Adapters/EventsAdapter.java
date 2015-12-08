@@ -1,4 +1,4 @@
-package com.startupsclub.scdd.adapter;
+package com.startupsclub.scdd.Adapters;
 
 
 import android.support.v7.widget.CardView;
@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.startupsclub.scdd.R;
 import com.startupsclub.scdd.RowElements.CEvents;
-
 import java.util.ArrayList;
 
 

@@ -1,42 +1,42 @@
-package com.startupsclub.scdd;
+package com.startupsclub.scdd.Adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.startupsclub.scdd.AgendaFragment;
+import com.startupsclub.scdd.RowElements.City;
+import com.startupsclub.scdd.MainActivity;
+import com.startupsclub.scdd.R;
 
 import java.util.List;
 
 /**
  * Created by admin on 12/3/2015.
  */
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
+public class CityRVAdapter extends RecyclerView.Adapter<CityRVAdapter.CityViewHolder> {
 
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+    public static class CityViewHolder extends RecyclerView.ViewHolder {
 
-        CardView cv;
-        TextView personName;
-        TextView personAge;
+        TextView cityName;
+        TextView cityDate;
 
-        PersonViewHolder(View itemView) {
+        CityViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.id.person_name);
-            personAge = (TextView)itemView.findViewById(R.id.person_age);
+            cityName = (TextView)itemView.findViewById(R.id.city_name);
+            cityDate = (TextView)itemView.findViewById(R.id.city_date);
         }
     }
 
-    List<City> persons;
+    List<City> cities;
     Context context;
 
-    RVAdapter(List<City> persons, Context context){
-        this.persons = persons;
+    public CityRVAdapter(List<City> cities, Context context){
+        this.cities = cities;
         this.context = context;
     }
 
@@ -46,18 +46,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     }
 
     @Override
-    public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public CityViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_layout, viewGroup, false);
-        PersonViewHolder pvh = new PersonViewHolder(v);
+        CityViewHolder pvh = new CityViewHolder(v);
         return pvh;
     }
 
     @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder,int i) {
-        personViewHolder.personName.setText(persons.get(i).name);
-        personViewHolder.personAge.setText(persons.get(i).age);
+    public void onBindViewHolder(CityViewHolder cityViewHolder, int i) {
+        cityViewHolder.cityName.setText(cities.get(i).name);
+        cityViewHolder.cityDate.setText(cities.get(i).date);
 
-        personViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        cityViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new AgendaFragment();
@@ -71,6 +71,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
     @Override
     public int getItemCount() {
-        return persons.size();
+        return cities.size();
     }
 }
