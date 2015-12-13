@@ -64,23 +64,8 @@ Hashtable hashtable;
 
         @Override
         protected void onPostExecute(String response) {
-            String status="";
 
-            try {
-                JSONObject jObject=new JSONObject(response);
-                JSONArray jArray = jObject.getJSONArray("login");
-
-
-                    JSONObject jTemp = jArray.getJSONObject(0);
-                     status=jTemp.getString("status");
-                    Log.e("status",status+"");
-
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                status="--1--";
-                e.printStackTrace();
-            }
-            resposeHandler.postRequestResponse(status);
+            resposeHandler.postRequestResponse(response);
         }
 
         public String excutePost(String targetURL, String urlParameters)
