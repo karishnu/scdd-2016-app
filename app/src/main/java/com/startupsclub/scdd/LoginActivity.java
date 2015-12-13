@@ -14,6 +14,10 @@ import android.widget.TextView;
 import com.startupsclub.scdd.web.PostRequest;
 import com.startupsclub.scdd.web.PostRequest.PostRequestResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Hashtable;
 
 
@@ -94,8 +98,24 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
 
 
     @Override
-    public void postRequestResponse(String status) {
+    public void postRequestResponse(String jSONresponse) {
 pb.setVisibility(View.INVISIBLE);
+String status="";
+        try {
+            JSONObject jObject=new JSONObject(jSONresponse);
+            Log.e("Json response",jObject.toString());
+            JSONArray jArray = jObject.getJSONArray("login");
+
+
+            JSONObject jTemp = jArray.getJSONObject(0);
+            status=jTemp.getString("status");
+            Log.e("status",status+"");
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            status="201";
+            e.printStackTrace();
+        }
         Log.e("Response in activity", status + "");
         if (status.equals("0"))
             ed2.setError("Wrong Password");
