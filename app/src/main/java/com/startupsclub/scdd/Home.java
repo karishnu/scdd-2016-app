@@ -35,9 +35,16 @@ public class Home extends Fragment {
 
         ArrayList<City> cityList = new ArrayList<>();
 
-        cityList.add(new City("Mumbai", "23rd November"));
-        cityList.add(new City("Delhi", "24th November"));
-        cityList.add(new City("Hyderabad", "25th November"));
+        cityList.add(new City("Banglore", "16th January"));
+        cityList.add(new City("Chennai", "20th February"));
+        cityList.add(new City("Hyderabad", "19th March"));
+        cityList.add(new City("Coimbatore", "16th April"));
+        cityList.add(new City("Mumbai", "21st May"));
+        cityList.add(new City("Delhi", "18th June"));
+        cityList.add(new City("Pune", "16th July"));
+        cityList.add(new City("Kochi", "20th August"));
+        cityList.add(new City("Ahmedabad", "17th September"));
+        cityList.add(new City("Visakhapatnam", "15th October"));
 
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv);
 
