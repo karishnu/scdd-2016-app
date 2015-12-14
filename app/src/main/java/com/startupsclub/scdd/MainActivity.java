@@ -15,15 +15,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.startupsclub.scdd.RowElements.City;
 import com.startupsclub.scdd.Adapters.CityRVAdapter;
+import com.startupsclub.scdd.web.Sync;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,Sync.SyncCompleteResponder {
 
     TextView subtitle;
     TextView nav_head_email;
@@ -128,6 +130,10 @@ public class MainActivity extends AppCompatActivity
                         .replace(R.id.home_cities,fragment,"1st page")
                         .commit();
                 break;
+            case 2:
+                new Sync("test@gmail.com",this).setListener(this);
+                Toast.makeText(this,"Sync in progress",Toast.LENGTH_SHORT).show();
+                break;
             case 3:
                 fragment = new TermsFragment();
                 getSupportFragmentManager().beginTransaction()
@@ -149,5 +155,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+   public  void syncCompleteResponder(Boolean status)
+   {
+       if(status)
+       Toast.makeText(this,"Sync completed.",Toast.LENGTH_SHORT).show();
+       else
+           Toast.makeText(this,"Error while syncing",Toast.LENGTH_SHORT).show();
+   }
 
 }

@@ -113,12 +113,12 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/ph_edtext"
             android:layout_alignRight="@+id/ph_edtext"
-            android:layout_below="@+id/ph_edtext"
+            android:layout_below="@+id/password_edtext"
             android:layout_marginTop="20dp"
 
             android:background="@drawable/layout_round_orange_button"
-            android:onClick="next"
-            android:text="Next"
+            android:text="Register"
+            android:onClick="register"
             android:textColor="#ffffff" />
 
         <TextView
@@ -131,6 +131,43 @@
             android:onClick="signin"
             android:text="Sign In"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/username_edtext"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/simple_round_black"
+            android:layout_below="@+id/ph_edtext"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+
+            android:hint="Preffered Username"/>
+
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:hint="Password"
+            android:background="@drawable/simple_round_black"
+            android:id="@+id/password_edtext"
+            android:layout_below="@+id/username_edtext"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            />
 
 
     </RelativeLayout>
