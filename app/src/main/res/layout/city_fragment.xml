@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/city_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/city_layout_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mumbai"
+        android:textSize="60sp"
+        android:layout_below="@+id/city_image"/>
+    <TextView
+        android:id="@+id/city_label_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="40sp"
+        android:layout_below="@+id/city_layout_name"/>
+    <TextView
+        android:id="@+id/city_layout_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21st May"
+        android:textSize="30sp"
+        android:layout_below="@+id/city_label_date"/>
+    <TextView
+        android:id="@+id/city_label_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textSize="40sp"
+        android:layout_below="@+id/city_layout_date"/>
+    <TextView
+        android:id="@+id/city_layout_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample Location"
+        android:textSize="30sp"
+        android:layout_below="@+id/city_label_location"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/city_button_location"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_gps_fixed_white_24dp"
+            android:padding="5dp"/>
+        <Button
+            android:id="@+id/city_button_speakers"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Speakers"
+            android:layout_toRightOf="@+id/city_button_location"/>
+        <Button
+            android:id="@+id/city_button_sponsors"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Sponsors"
+            android:layout_toRightOf="@+id/city_button_speakers"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
