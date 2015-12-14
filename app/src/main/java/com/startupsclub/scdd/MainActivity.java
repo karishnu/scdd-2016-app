@@ -1,5 +1,6 @@
 package com.startupsclub.scdd;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -128,7 +129,8 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 break;
             case 2:
-                new Sync("test@gmail.com",this).setListener(this);
+                SharedPreferences pref=getSharedPreferences("login_data",MODE_PRIVATE);
+                new Sync(pref.getString("username","test@gmail.com"),this).setListener(this);
                 Toast.makeText(this,"Sync in progress",Toast.LENGTH_SHORT).show();
                 break;
             case 3:

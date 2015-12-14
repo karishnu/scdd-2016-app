@@ -39,8 +39,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
         pb=(ProgressBar)findViewById(R.id.progressBar);
         ed1=(EditText)findViewById(R.id.username_edtext);
         ed2=(EditText)findViewById(R.id.passwd_edtext);
-        username=ed1.getText().toString();
-        password=ed2.getText().toString();
+
             }
 
    
@@ -49,7 +48,8 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
     	//Perform login task here.
     	//finish();
     	if(attempt_login()) {
-
+            username=ed1.getText().toString();
+            password=ed2.getText().toString();
       pb.setVisibility(View.VISIBLE);
             Hashtable<String,String> ht=new Hashtable<String,String>();
             ht.put("username",ed1.getText().toString());
@@ -116,14 +116,15 @@ String status="";
             status="201";
             e.printStackTrace();
         }
-        Log.e("Response in activity", status + "");
+
         if (status.equals("0"))
             ed2.setError("Wrong Password");
         if (status.equals("-1"))
             ed1.setError("This username does't exists");
         if (status.equals("1")) {
 
-            SharedPreferences.Editor pref=getSharedPreferences("login_data ",MODE_PRIVATE).edit();
+            SharedPreferences.Editor pref=getSharedPreferences("login_data",MODE_PRIVATE).edit();
+
             pref.putString("username",username);
             pref.putString("password",password);
             pref.commit();
