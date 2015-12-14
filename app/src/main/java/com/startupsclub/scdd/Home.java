@@ -1,16 +1,17 @@
 package com.startupsclub.scdd;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.startupsclub.scdd.Adapters.CityRVAdapter;
 import com.startupsclub.scdd.RowElements.City;
@@ -24,6 +25,7 @@ import java.util.List;
 public class Home extends Fragment {
 
     Context context;
+    TextView nav_head_email;
 
     @Nullable
     @Override

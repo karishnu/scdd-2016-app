@@ -1,5 +1,7 @@
 package com.startupsclub.scdd;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView subtitle;
+    TextView nav_head_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
