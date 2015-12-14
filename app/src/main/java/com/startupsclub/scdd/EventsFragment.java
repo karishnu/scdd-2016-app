@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.startupsclub.scdd.Database.LocalDB;
 import com.startupsclub.scdd.RowElements.CEvents;
 import com.startupsclub.scdd.Adapters.EventsAdapter;
 
@@ -35,11 +36,10 @@ Context context;
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
-        CEvents ev=new CEvents("2016","21 Jan","Fri","Demo Day 2016","Bangalore");
-        ArrayList<CEvents> aList=new ArrayList<CEvents>();
-        aList.add(ev);
-        aList.add(ev);
-        aList.add(ev);
+
+        LocalDB db=new LocalDB(context);
+        ArrayList<CEvents> aList=new ArrayList<>();
+        aList=db.getEventsData();
 
         EventsAdapter adapter=new EventsAdapter(aList);
         recList.setAdapter(adapter);
