@@ -21,19 +21,19 @@ public class SignupActivity extends AppCompatActivity implements PostRequest.Pos
 	EditText ed1,ed2,ed3,ed4,ed5,ed6;
 	String fn,ln,email,ph,user,pass;
 	ProgressBar pb;
-	 @Override
-	    protected void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.activity_signup);
-		 ed1=(EditText)findViewById(R.id.fn_edtext);
-		 ed2=(EditText)findViewById(R.id.ln_edtext);
-		 ed3=(EditText)findViewById(R.id.email_edtext);
-		 ed4=(EditText)findViewById(R.id.ph_edtext);
-		 ed5=(EditText)findViewById(R.id.username_edtext);
-		 ed6=(EditText)findViewById(R.id.password_edtext);
-		 pb=(ProgressBar)findViewById(R.id.progressBar);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_signup);
+		ed1=(EditText)findViewById(R.id.fn_edtext);
+		ed2=(EditText)findViewById(R.id.ln_edtext);
+		ed3=(EditText)findViewById(R.id.email_edtext);
+		ed4=(EditText)findViewById(R.id.ph_edtext);
+		ed5=(EditText)findViewById(R.id.username_edtext);
+		ed6=(EditText)findViewById(R.id.password_edtext);
+		pb=(ProgressBar)findViewById(R.id.progressBar);
 
-	 }
+	}
 
 
 	public void register(View view)
@@ -94,11 +94,11 @@ public class SignupActivity extends AppCompatActivity implements PostRequest.Pos
 			ed4.setError("This field cannot be empty");
 		}
 
-       if(user.length()==0)
-	   {
-		   re=false;
-		   ed5.setError("This field cannot be empty");
-	   }
+		if(user.length()==0)
+		{
+			re=false;
+			ed5.setError("This field cannot be empty");
+		}
 		if(pass.length()==0)
 		{
 			re=false;
@@ -109,18 +109,18 @@ public class SignupActivity extends AppCompatActivity implements PostRequest.Pos
 	}
 
 
-	 public void signin(View view)
-	 {
-		 finish();
-		 startActivity(new Intent(this,LoginActivity.class));
-	 }
+	public void signin(View view)
+	{
+		finish();
+		startActivity(new Intent(this,LoginActivity.class));
+	}
 
 
-	 public void back(View view)
-	 {
-		 finish();
-		 startActivity(new Intent(this,LoginActivity.class));
-	 }
+	public void back(View view)
+	{
+		finish();
+		startActivity(new Intent(this,LoginActivity.class));
+	}
 
 
 
@@ -136,7 +136,7 @@ public class SignupActivity extends AppCompatActivity implements PostRequest.Pos
 			String status=jTemp.getString("status");
 			if(status.equals("1"))
 				startActivity(new Intent(this,LoginActivity.class));
-		else if(status.equals("2"))
+			else if(status.equals("2"))
 				ed5.setError("This username already exists");
 			else
 				Toast.makeText(this,"Check your connection",Toast.LENGTH_LONG).show();

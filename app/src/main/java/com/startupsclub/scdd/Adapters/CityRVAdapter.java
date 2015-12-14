@@ -62,7 +62,8 @@ public class CityRVAdapter extends RecyclerView.Adapter<CityRVAdapter.CityViewHo
             public void onClick(View v) {
                 Fragment fragment = new AgendaFragment();
                 ((MainActivity)context).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_cities,fragment,"1st page")
+                        .setCustomAnimations(R.anim.slide_in, R.anim.slide_out) //By Akshay : added animation
+                        .replace(R.id.home_cities, fragment, "1st page")
                         .addToBackStack(null)
                         .commit();
             }

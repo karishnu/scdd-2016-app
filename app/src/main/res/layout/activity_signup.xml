@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:background="#ef6c00">
 
         <ImageButton
@@ -40,9 +40,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/linear1"
-        android:layout_marginBottom="34dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/login_background">
@@ -115,7 +114,6 @@
             android:layout_alignRight="@+id/ph_edtext"
             android:layout_below="@+id/password_edtext"
             android:layout_marginTop="20dp"
-
             android:background="@drawable/layout_round_orange_button"
             android:text="Register"
             android:onClick="register"
@@ -131,6 +129,8 @@
             android:onClick="signin"
             android:text="Sign In"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
 
         <EditText
             android:id="@+id/username_edtext"
@@ -160,6 +160,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="3dp"
             />
+
 
         <ProgressBar
             android:layout_width="wrap_content"
