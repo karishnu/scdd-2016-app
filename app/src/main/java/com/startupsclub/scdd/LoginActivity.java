@@ -88,7 +88,8 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
     }
 
     public void forgot_password(View view) {
-        //Perform forgor password task here
+        Intent intent = new Intent(this, SplashActivity.class);
+        startActivity(intent);
     }
 
     public void signup(View view) {
