@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bck"
+    android:background="@drawable/login_pic"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
@@ -105,6 +105,7 @@
             android:layout_below="@+id/login_button"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
+            android:paddingBottom="5dp"
             android:layout_marginTop="15dp"
             android:onClick="forgot_password"
             android:text="Lost your password?"
@@ -119,7 +120,9 @@
             android:onClick="signup"
             android:text="New User"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"/>
 
     </RelativeLayout>
 

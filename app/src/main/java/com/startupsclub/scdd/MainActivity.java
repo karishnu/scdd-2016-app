@@ -1,6 +1,7 @@
 package com.startupsclub.scdd;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity
 
     TextView subtitle;
     TextView nav_head_email;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +83,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_feedback:
+                intent = new Intent(this, FeedbackActivity.class);
+                startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -163,5 +173,6 @@ public class MainActivity extends AppCompatActivity
        else
            Toast.makeText(this,"Error while syncing",Toast.LENGTH_SHORT).show();
    }
+
 
 }
