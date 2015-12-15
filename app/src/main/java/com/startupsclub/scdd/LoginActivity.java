@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.startupsclub.scdd.web.PostRequest;
 import com.startupsclub.scdd.web.PostRequest.PostRequestResponseHandler;
+import com.startupsclub.scdd.web.Sync;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +24,7 @@ import org.json.JSONObject;
 import java.util.Hashtable;
 
 
-public class LoginActivity extends AppCompatActivity implements PostRequestResponseHandler {
+public class LoginActivity extends AppCompatActivity implements PostRequestResponseHandler, Sync.SyncCompleteResponder {
 
 
     EditText ed1, ed2;
@@ -88,21 +90,18 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
     }
 
     public void forgot_password(View view) {
-        Intent intent = new Intent(this, SplashActivity.class);
-        startActivity(intent);
+        // forgot password code here
     }
 
     public void signup(View view) {
         finish();
         startActivity(new Intent(this, SignupActivity.class));
-
     }
 
     @Override
 
     public void postRequestResponse(String jSONresponse) {
-        pb.setVisibility(View.INVISIBLE);
-        login_button.setVisibility(View.VISIBLE);
+
         String status = "";
         try {
             JSONObject jObject = new JSONObject(jSONresponse);
@@ -123,7 +122,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
         if (status.equals("0"))
             ed2.setError("Wrong Password");
         if (status.equals("-1"))
-            ed1.setError("This username does't exists");
+            ed1.setError("This username doesn't exist");
         if (status.equals("1")) {
 
             SharedPreferences.Editor pref = getSharedPreferences("login_data", MODE_PRIVATE).edit();
@@ -132,8 +131,16 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
 
             pref.commit();
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            new Sync(username, this).setListener(this);
         }
+    }
+
+    public  void syncCompleteResponder(Boolean status)
+    {
+        if(status==false) {
+            Toast.makeText(this, "Error while syncing", Toast.LENGTH_SHORT).show();
+        }
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
 

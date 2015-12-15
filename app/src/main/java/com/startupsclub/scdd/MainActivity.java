@@ -157,6 +157,15 @@ public class MainActivity extends AppCompatActivity
                         .replace(R.id.home_cities,fragment,"1st page")
                         .commit();
                 break;
+            case 5:
+                SharedPreferences pref2=getSharedPreferences("login_data",MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref2.edit();
+                editor.remove("username");
+                editor.remove("password");
+                editor.apply();
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
             case 6:
                 fragment = new EventsFragment();
                 getSupportFragmentManager().beginTransaction()
