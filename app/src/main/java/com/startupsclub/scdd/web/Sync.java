@@ -1,12 +1,18 @@
 package com.startupsclub.scdd.web;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import com.startupsclub.scdd.Database.LocalDB;
+import com.startupsclub.scdd.RowElements.Agenda;
+import com.startupsclub.scdd.RowElements.CEvents;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -18,7 +24,8 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
     private SyncCompleteResponder resposeHandler;
     public  Sync(String username,Context context){
         this.context=context;
-        Hashtable<String,String> ht=new Hashtable<>();
+
+		Hashtable<String,String> ht=new Hashtable<>();
         ht.put("username",username);
 
         new PostRequest(ht,"http://myappserver.netau.net/SCDD/sync.php").setListener(this);
@@ -59,12 +66,18 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
 				String designation=jTemp.getString("designation");
 				String address=jTemp.getString("address");
 
-				//Update local database here.
+				//Update local database for user data here.
+
+				LocalDB db=new LocalDB(context);
+				db.updateUserData(username,email,fn,ln,phone,com_name,designation,address);
+
 			}
 
 			//Retrieving events data
 
 			jTempArray=jEventsdata.getJSONArray("events_data");
+					ArrayList<CEvents> al=new ArrayList<>();
+
 			for(int i=0;i<jTempArray.length();i++){
 
 				jTemp=jTempArray.getJSONObject(i);
@@ -78,7 +91,10 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
 					String weekday=jTemp.getString("weekday");
 
 					  //Update local database for events here for each row retrieved
-
+				CEvents ce=	new CEvents(year,date,weekday,title,place);
+					al.add(ce);
+					LocalDB db=new LocalDB(context);
+					db.updateEventsData(al);
 				}
 
 			}
@@ -86,6 +102,8 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
 			//Retrieving agenda data
 
 			jTempArray=jAgendadata.getJSONArray("agenda_data");
+				ArrayList<Agenda>	al1=new ArrayList<>();
+
 			for(int i=0;i<jTempArray.length();i++){
 
 				jTemp=jTempArray.getJSONObject(i);
@@ -93,10 +111,13 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
 				if(jTemp.getString("success").equals("true")){
 
 					String title=jTemp.getString("title");
-					String start_time=jTemp.getString("start_time");
-					String end_time=jTemp.getString("end_time");
+					String time=jTemp.getString("time");
 
 					//Update local database for agenda here for each row retrieved
+					Agenda ag=new Agenda(time,title);
+					al1.add(ag);
+					LocalDB db=new LocalDB(context);
+					db.updateAgendaData(al1);
 				}
 
 			}

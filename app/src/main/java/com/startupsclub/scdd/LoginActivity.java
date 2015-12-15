@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             status = "201";
             e.printStackTrace();
         }
-        Log.e("Response in activity", status + "");
+
         if (status.equals("0"))
             ed2.setError("Wrong Password");
         if (status.equals("-1"))
@@ -128,6 +128,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             SharedPreferences.Editor pref = getSharedPreferences("login_data", MODE_PRIVATE).edit();
             pref.putString("username", username);
             pref.putString("password", password);
+
             pref.commit();
             finish();
             startActivity(new Intent(this, MainActivity.class));

@@ -131,7 +131,8 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 break;
             case 2:
-                new Sync("test@gmail.com",this).setListener(this);
+                SharedPreferences pref=getSharedPreferences("login_data",MODE_PRIVATE);
+                new Sync(pref.getString("username","test@gmail.com"),this).setListener(this);
                 Toast.makeText(this,"Sync in progress",Toast.LENGTH_SHORT).show();
                 break;
             case 3:

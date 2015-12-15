@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.startupsclub.scdd.Database.LocalDB;
 import com.startupsclub.scdd.RowElements.Agenda;
 import com.startupsclub.scdd.Adapters.AgendaRVAdapter;
 
@@ -32,10 +33,8 @@ public class AgendaFragment extends Fragment {
 
         agenda_list = new ArrayList<>();
 
-        agenda_list.add(new Agenda("9:30am - 10am","Speech"));
-        agenda_list.add(new Agenda("9:30am - 10am","Speech"));
-        agenda_list.add(new Agenda("9:30am - 10am","Speech"));
-        agenda_list.add(new Agenda("9:30am - 10am","Speech"));
+        LocalDB db=new LocalDB(context);
+        agenda_list=db.getAgendaData();
 
         agenda_rv = (RecyclerView) rootView.findViewById(R.id.agenda_rv);
 
