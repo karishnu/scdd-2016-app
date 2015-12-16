@@ -1,9 +1,11 @@
 package com.startupsclub.scdd;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -119,14 +121,14 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             status = "201";
             e.printStackTrace();
         }
-
+        progressbarvisiblity(false);
         if (status.equals("0")){
             ed2.setError("Wrong Password");
         progressbarvisiblity(false);}
-        if (status.equals("-1")){
+        else   if (status.equals("-1")){
             ed1.setError("This username doesn't exist");
         progressbarvisiblity(false);}
-        if (status.equals("1")) {
+       else if (status.equals("1")) {
 
             SharedPreferences.Editor pref = getSharedPreferences("login_data", MODE_PRIVATE).edit();
             pref.putString("username", username);
@@ -135,6 +137,21 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             pref.commit();
             finish();
             new Sync(username, this).setListener(this);
+        }
+        else
+        {
+             AlertDialog ad=new AlertDialog.Builder(this).create();
+            ad.setTitle("Unable to login");
+            ad.setMessage("Please check you network connection");
+            ad.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // TODO Auto-generated method stub
+                    dialog.dismiss();
+                }
+            });
+            ad.show();
         }
     }
 

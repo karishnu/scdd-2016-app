@@ -114,25 +114,27 @@ public class SignupActivity extends AppCompatActivity implements PostRequest.Pos
 
     @Override
     public void postRequestResponse(String jSONResponse) {
-
+        String status="";
         try {
             JSONObject jObject = new JSONObject(jSONResponse);
             Log.e("Json response", jObject.toString());
             JSONArray jArray = jObject.getJSONArray("register");
 
             JSONObject jTemp = jArray.getJSONObject(0);
-            String status = jTemp.getString("status");
-            if (status.equals("1"))
-                startActivity(new Intent(this, LoginActivity.class));
-            else if (status.equals("2"))
-                ed5.setError("This username already exists");
-            else
-                Toast.makeText(this, "Check your connection", Toast.LENGTH_LONG).show();
+            status = jTemp.getString("status");
+
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            status="201";
             Log.e("Json response", e.toString());
         }
+        if (status.equals("1"))
+            startActivity(new Intent(this, LoginActivity.class));
+        else if (status.equals("2"))
+            ed5.setError("This username already exists");
+        else
+            Toast.makeText(this, "Please check your connection", Toast.LENGTH_LONG).show();
         pb.setVisibility(View.INVISIBLE);
     }
 }

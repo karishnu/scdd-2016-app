@@ -28,6 +28,7 @@ public class SplashActivity extends AppCompatActivity implements Sync.SyncComple
             new Sync(username, this).setListener(this);
         }
         else {
+            finish();
             startActivity(intent);
         }
     }
@@ -38,6 +39,7 @@ public class SplashActivity extends AppCompatActivity implements Sync.SyncComple
         if(status==false) {
             Toast.makeText(this, "Error while syncing", Toast.LENGTH_SHORT).show();
         }
+        finish();
         startActivity(intent);
     }
 }
