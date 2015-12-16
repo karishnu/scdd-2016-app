@@ -38,7 +38,7 @@ Context context;
         recList.setLayoutManager(llm);
 
         LocalDB db=new LocalDB(context);
-        ArrayList<CEvents> aList=new ArrayList<>();
+        ArrayList<CEvents> aList;
         aList=db.getEventsData();
 
         EventsAdapter adapter=new EventsAdapter(aList);

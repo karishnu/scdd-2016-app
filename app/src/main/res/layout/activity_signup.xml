@@ -152,22 +152,21 @@
             android:layout_height="35dp"
             android:layout_centerHorizontal="true"
             android:hint="Password"
+            android:inputType="textPassword"
             android:background="@drawable/simple_round_black"
             android:id="@+id/password_edtext"
             android:layout_below="@+id/username_edtext"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="3dp"
-            />
+            android:layout_marginTop="3dp" />
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/progressBar"
             android:layout_centerInParent="true"
-            android:visibility="invisible"
-            />
+            android:visibility="invisible" />
 
 
     </RelativeLayout>

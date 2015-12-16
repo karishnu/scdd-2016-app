@@ -28,7 +28,7 @@ public class CityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.city_fragment, container, false);
 
         context = getActivity();
-
+        ((MainActivity) getActivity()).city_name = getArguments().getString("city");
 
         return rootView;
     }

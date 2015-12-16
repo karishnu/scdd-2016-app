@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.startupsclub.scdd.Database.LocalDB;
 import com.startupsclub.scdd.RowElements.Agenda;
@@ -23,6 +24,7 @@ public class AgendaFragment extends Fragment {
     ArrayList<Agenda> agenda_list;
     RecyclerView agenda_rv;
     Context context;
+    TextView city_name;
 
     @Override
 
@@ -47,6 +49,9 @@ public class AgendaFragment extends Fragment {
         AgendaRVAdapter rvAdapter = new AgendaRVAdapter(agenda_list);
 
         agenda_rv.setAdapter(rvAdapter);
+
+        city_name = (TextView) rootView.findViewById(R.id.agenda_cityname);
+        city_name.setText(((MainActivity) getActivity()).city_name);
 
         return rootView;
     }

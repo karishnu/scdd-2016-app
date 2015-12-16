@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     TextView subtitle;
     TextView nav_head_email;
     Intent intent;
+    String city_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

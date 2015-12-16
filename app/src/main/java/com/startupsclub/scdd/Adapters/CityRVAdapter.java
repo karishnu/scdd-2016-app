@@ -1,6 +1,7 @@
 package com.startupsclub.scdd.Adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,14 +55,17 @@ public class CityRVAdapter extends RecyclerView.Adapter<CityRVAdapter.CityViewHo
     }
 
     @Override
-    public void onBindViewHolder(CityViewHolder cityViewHolder, int i) {
+    public void onBindViewHolder(CityViewHolder cityViewHolder,final int i) {
         cityViewHolder.cityName.setText(cities.get(i).name);
         cityViewHolder.cityDate.setText(cities.get(i).date);
 
         cityViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("city",cities.get(i).name);
                 Fragment fragment = new CityFragment();
+                fragment.setArguments(bundle);
                 ((MainActivity)context).getSupportFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.home_cities,fragment,"1st page")
