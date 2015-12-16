@@ -27,7 +27,7 @@ public class LocalDB extends SQLiteOpenHelper {
 
     private String CREATE_TABLEuser_data="create table " + tUser_data+ "( username varchar(20) primary key, email varchar(10) , first_name varchar(15) , last_name varchar(15) , mobile varchar(10) , com_name varchar(20) , designation varchar(30) ,address varchar(40) );";
     private String CREATE_TABLEevents_data="create table " + tEvents_data+ "( title varchar(40), place varchar(20) , year varchar(4) , date varchar(10) , weekday varchar(8) );";
-    private String CREATE_TABLEagenda_data="create table " + tAgenda_data+ "( title varchar(20), time varchar(20) );";
+    private String CREATE_TABLEagenda_data="create table " + tAgenda_data+ "( title varchar(40), time varchar(20) );";
 
     public LocalDB(Context context) {
         super(context, DATABASE_NAME,null,DATABASE_VERSION);
