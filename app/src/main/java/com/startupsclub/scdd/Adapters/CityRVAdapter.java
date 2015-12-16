@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.startupsclub.scdd.AgendaFragment;
+import com.startupsclub.scdd.CityFragment;
 import com.startupsclub.scdd.RowElements.City;
 import com.startupsclub.scdd.MainActivity;
 import com.startupsclub.scdd.R;
@@ -60,7 +61,7 @@ public class CityRVAdapter extends RecyclerView.Adapter<CityRVAdapter.CityViewHo
         cityViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new AgendaFragment();
+                Fragment fragment = new CityFragment();
                 ((MainActivity)context).getSupportFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
                         .replace(R.id.home_cities,fragment,"1st page")

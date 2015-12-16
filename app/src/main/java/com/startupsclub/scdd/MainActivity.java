@@ -182,6 +182,12 @@ public class MainActivity extends AppCompatActivity
        else
            Toast.makeText(this,"Error while syncing",Toast.LENGTH_SHORT).show();
    }
+    public void agendaclick(View view){
+        Fragment fragment = new AgendaFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_cities,fragment,"1st page")
+                .commit();
+    }
 
 
 }

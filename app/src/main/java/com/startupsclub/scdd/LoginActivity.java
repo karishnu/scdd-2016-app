@@ -55,8 +55,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
         //finish();
         if (attempt_login()) {
 
-            pb.setVisibility(View.VISIBLE);
-            login_button.setVisibility(View.INVISIBLE);
+            progressbarvisiblity(true);
             Hashtable<String, String> ht = new Hashtable<String, String>();
             ht.put("username", ed1.getText().toString());
             ht.put("password", ed2.getText().toString());
@@ -72,10 +71,12 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
         String pass = ed2.getText().toString();
         if (!validateEmail(email)) {
             ed1.setError("Invalid email !");
+            progressbarvisiblity(false);
             return false;
         }
         if (pass.length() < 5) {
             ed2.setError("Atleast 5 characters req");
+            progressbarvisiblity(false);
             return false;
         }
         return true;
@@ -119,10 +120,12 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             e.printStackTrace();
         }
 
-        if (status.equals("0"))
+        if (status.equals("0")){
             ed2.setError("Wrong Password");
-        if (status.equals("-1"))
+        progressbarvisiblity(false);}
+        if (status.equals("-1")){
             ed1.setError("This username doesn't exist");
+        progressbarvisiblity(false);}
         if (status.equals("1")) {
 
             SharedPreferences.Editor pref = getSharedPreferences("login_data", MODE_PRIVATE).edit();
@@ -141,6 +144,15 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             Toast.makeText(this, "Error while syncing", Toast.LENGTH_SHORT).show();
         }
         startActivity(new Intent(this, MainActivity.class));
+    }
+    public void progressbarvisiblity(Boolean visible){
+        if (visible){
+        pb.setVisibility(View.VISIBLE);
+        login_button.setVisibility(View.INVISIBLE);}
+        else {
+            pb.setVisibility(View.INVISIBLE);
+            login_button.setVisibility(View.VISIBLE);
+        }
     }
 }
 
