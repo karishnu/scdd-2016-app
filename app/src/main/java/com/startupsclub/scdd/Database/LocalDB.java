@@ -145,7 +145,7 @@ public class LocalDB extends SQLiteOpenHelper {
                     String title = cursor.getString(cursor.getColumnIndex("title"));
                     String time = cursor.getString(cursor.getColumnIndex("time"));
 
-                    Agenda ag = new Agenda(title,time);
+                    Agenda ag = new Agenda(time,title);
                     al.add(ag);
 
                 } while (cursor.moveToNext());
