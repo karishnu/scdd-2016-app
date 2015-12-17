@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linear1"
+        android:layout_marginBottom="34dp"
+        android:background="@drawable/login_background">
+
+    <EditText
+        android:id="@+id/username_edtext"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/simple_round_black"
+        android:hint="Preffered Username"
+        android:inputType="text">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/password_edtext"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/username_edtext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/simple_round_black"
+        android:hint="Password"
+        android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/repassword_edtext"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/password_edtext"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/simple_round_black"
+            android:hint="Re-Type Password"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/register_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/repassword_edtext"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/layout_round_orange_button"
+            android:text="Register"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/signin_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:onClick="signin"
+            android:text="Sign In"
+            android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_alignTop="@+id/register_bt"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</RelativeLayout>
