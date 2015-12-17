@@ -35,7 +35,6 @@ public class SignupActivity extends AppCompatActivity implements PostRequest.Pos
         pb = (ProgressBar) findViewById(R.id.progressBar);
     }
 
-
     public void register(View view) {
         if (attempt_register()) {
             pb.setVisibility(View.VISIBLE);
