@@ -18,11 +18,12 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/layout_outline">
+            android:background="@drawable/layout_outline"
+            android:layout_margin="5dp">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentLeft="true"
@@ -63,7 +64,7 @@
                     android:id="@+id/event_wday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Day"
+                    android:text="Weekday"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ef6c00" />
             </LinearLayout>
