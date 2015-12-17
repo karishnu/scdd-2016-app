@@ -69,13 +69,9 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
 
     public Boolean attempt_login() {
 
-        String email = ed1.getText().toString();
+
         String pass = ed2.getText().toString();
-        if (!validateEmail(email)) {
-            ed1.setError("Invalid email !");
-            progressbarvisiblity(false);
-            return false;
-        }
+
         if (pass.length() < 5) {
             ed2.setError("Atleast 5 characters req");
             progressbarvisiblity(false);
@@ -84,13 +80,6 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
         return true;
     }
 
-    public boolean validateEmail(String email) {
-        if (email.contains("@"))
-            return true;
-        else
-            return false;
-
-    }
 
     public void forgot_password(View view) {
         // forgot password code here
