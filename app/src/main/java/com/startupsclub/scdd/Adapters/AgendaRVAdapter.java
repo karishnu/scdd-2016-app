@@ -51,12 +51,13 @@ public class AgendaRVAdapter extends RecyclerView.Adapter<AgendaRVAdapter.Agenda
     }
 
     @Override
-    public void onBindViewHolder(AgendaViewHolder personViewHolder, int i) {
-        personViewHolder.agendaTime.setText(agendas.get(i).time);
-        personViewHolder.agendaEvent.setText(agendas.get(i).event);
+    public void onBindViewHolder(AgendaViewHolder agendaViewHolder, int i) {
+        agendaViewHolder.agendaTime.setText(agendas.get(i).time);
+        agendaViewHolder.agendaEvent.setText(agendas.get(i).event);
+        agendaViewHolder.agenda_green_line.setVisibility(View.VISIBLE);
 
         if (i==(agendas.size()-1)){
-            personViewHolder.agenda_green_line.setVisibility(View.GONE);
+            agendaViewHolder.agenda_green_line.setVisibility(View.GONE);
         }
     }
 
