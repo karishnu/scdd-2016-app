@@ -124,8 +124,8 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             pref.putString("password", password);
 
             pref.commit();
-            finish();
             new Sync(username, this).setListener(this);
+            finish();
         }
         else
         {
