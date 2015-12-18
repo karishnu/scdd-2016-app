@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,Sync.SyncCompleteResponder {
 
     TextView subtitle;
-    TextView nav_head_email;
+    TextView nav_head_email, nav_head_name;
     Intent intent;
     String city_name;
+    SharedPreferences name_email_prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null)
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         subtitle = (TextView) findViewById(R.id.subtitle);
+
 
         navigationMenuAction(0);
 
@@ -83,9 +86,11 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
+
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_settings:
+            case R.id.action_about:
                 return true;
             case R.id.action_feedback:
                 intent = new Intent(this, FeedbackActivity.class);
@@ -98,6 +103,11 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        nav_head_email = (TextView) findViewById(R.id.nav_head_email);
+        nav_head_name = (TextView) findViewById(R.id.nav_head_name);
+        name_email_prefs = getSharedPreferences("login_data",MODE_PRIVATE);
+        nav_head_name.setText(name_email_prefs.getString("username","username"));
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linear1"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="34dp"
         android:background="@drawable/login_background">
 
@@ -21,11 +21,10 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/simple_round_black"
             android:hint="First Name"
             android:inputType="text">
-
             <requestFocus />
         </EditText>
 
@@ -48,7 +47,6 @@
             android:layout_height="35dp"
             android:layout_below="@+id/ln_edtext"
             android:layout_centerHorizontal="true"
-
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -69,7 +67,6 @@
             android:layout_marginTop="3dp"
             android:background="@drawable/simple_round_black"
             android:hint="Mobile Number"
-
             android:inputType="phone" />
 
         <Button
@@ -80,7 +77,6 @@
             android:layout_alignRight="@+id/ph_edtext"
             android:layout_below="@+id/ph_edtext"
             android:layout_marginTop="20dp"
-
             android:background="@drawable/layout_round_orange_button"
             android:text="Next"
             android:textColor="#ffffff" />
@@ -89,22 +85,20 @@
             android:id="@+id/signin_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentBottom="false"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="25dp"
             android:onClick="signin"
             android:text="Sign In"
+            android:layout_below="@id/next_bt"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
             android:layout_centerInParent="true"
             android:visibility="invisible" />
-
 
     </RelativeLayout>
 </RelativeLayout>
