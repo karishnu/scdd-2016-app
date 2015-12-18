@@ -33,7 +33,6 @@ public class SignupActivity extends AppCompatActivity  implements Signup_Frag1.O
        Fragment fragment = new Signup_Frag1();
 
         getSupportFragmentManager().beginTransaction()
-                .addToBackStack("abc")
                 .replace(R.id.frame_signup,fragment,"1st page")
                 .commit();
     }
@@ -55,6 +54,7 @@ public class SignupActivity extends AppCompatActivity  implements Signup_Frag1.O
         b.putString("phone",phone);
         fragment.setArguments(b);
         getSupportFragmentManager().beginTransaction()
+                .addToBackStack("abc")
                 .setCustomAnimations(R.anim.slide_out,R.anim.slide_out)
                 .replace(R.id.frame_signup,fragment,"1st page")
                 .commit();
