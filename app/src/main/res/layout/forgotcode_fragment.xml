@@ -6,6 +6,7 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -21,20 +22,35 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_email"
+                android:text="An email was sent to blabla.com"
+                android:layout_above="@+id/verification_code"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
             <EditText
+                android:id="@+id/verification_code"
+
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/simple_round_black"
                 android:hint="Enter Verification Code"
                 android:inputType="text"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp">
-                <requestFocus />
+                android:paddingRight="5dp"
+                >
+
             </EditText>
+            </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/submit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relu"
@@ -47,10 +63,12 @@
             android:textSize="20dp" />
 
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_below="@+id/relp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/submit_button"
             android:visibility="invisible"/>
 
     </RelativeLayout>
