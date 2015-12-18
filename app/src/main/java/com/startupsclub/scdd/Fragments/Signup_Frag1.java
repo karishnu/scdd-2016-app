@@ -19,18 +19,19 @@ import com.startupsclub.scdd.R;
 public class Signup_Frag1 extends Fragment {
 
     EditText ed1, ed2, ed3, ed4;
-    String fn,ln,email,ph;
+    String fn, ln, email, ph;
     OnCLickNextButton mCallback;
+
     @Override
 
-    public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.signup_frag1, container, false);
 
         ed1 = (EditText) rootView.findViewById(R.id.fn_edtext);
         ed2 = (EditText) rootView.findViewById(R.id.ln_edtext);
         ed3 = (EditText) rootView.findViewById(R.id.email_edtext);
         ed4 = (EditText) rootView.findViewById(R.id.ph_edtext);
-        Button b=(Button)rootView.findViewById(R.id.next_bt);
+        Button b = (Button) rootView.findViewById(R.id.next_bt);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,10 +39,9 @@ public class Signup_Frag1 extends Fragment {
                 ln = ed2.getText().toString() + "";
                 email = ed3.getText().toString() + "";
                 ph = ed4.getText().toString() + "";
-               if(attempt_next())
-               {
-                  mCallback.next_button(fn,ln,email,ph);
-               }
+                if (attempt_next()) {
+                    mCallback.next_button(fn, ln, email, ph);
+                }
             }
         });
         return rootView;
@@ -76,28 +76,23 @@ public class Signup_Frag1 extends Fragment {
         }
 
 
-
         return re;
     }
 
     @Override
-    public  void onAttach(Context context)
-    {
+    public void onAttach(Context context) {
         super.onAttach(context);
 
-        try{
-            mCallback=(OnCLickNextButton)context;
+        try {
+            mCallback = (OnCLickNextButton) context;
 
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException(context.toString()+" must implement this interface");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement this interface");
         }
     }
 
 
-    public interface OnCLickNextButton
-    {
-        void next_button(String fn,String ln,String email,String phone);
+    public interface OnCLickNextButton {
+        void next_button(String fn, String ln, String email, String phone);
     }
 }

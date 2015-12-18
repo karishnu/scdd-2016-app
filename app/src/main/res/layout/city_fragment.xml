@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -13,86 +13,161 @@
         android:columnCount="2"
         android:rowCount="3"
         tools:context=".GridXMLActivity">
+
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:onClick="agendaclick">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/city_square"
-                android:layout_centerInParent="true"/>
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/agenda_icon"
-                android:layout_centerInParent="true"
-                android:padding="10dp"/>
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rel_agenda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="agendaclick"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/city_square" />
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+                    android:src="@drawable/agenda_icon" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_below="@+id/rel_agenda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Agenda" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:padding="10dp">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/city_square"
-                android:layout_centerInParent="true"/>
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/venue_icon"
-                android:layout_centerInParent="true"
-                android:padding="10dp"/>
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rel_venue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/city_square" />
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+                    android:src="@drawable/venue_icon" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_venue"
+                android:layout_centerHorizontal="true"
+                android:text="Venue" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_height="wrap_content"
+
             android:layout_width="wrap_content"
-            android:padding="10dp">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/city_square"
-                android:layout_centerInParent="true"/>
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/speaker_icon"
-                android:layout_centerInParent="true"
-                android:padding="10dp"/>
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rel_speaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/city_square" />
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+                    android:src="@drawable/speaker_icon" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_speaker"
+                android:layout_centerHorizontal="true"
+                android:text="Speakers" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:padding="10dp">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/city_square"
-                android:layout_centerInParent="true"/>
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/stalls_icon"
-                android:layout_centerInParent="true"
-                android:padding="10dp"/>
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rel_stalls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/city_square" />
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+                    android:src="@drawable/stalls_icon" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_stalls"
+                android:layout_centerHorizontal="true"
+                android:text="Stalls" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:padding="10dp">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/city_square"
-                android:layout_centerInParent="true"/>
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/sponsors_icon"
-                android:layout_centerInParent="true"
-                android:padding="10dp"/>
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rel_sponsors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/city_square" />
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/sponsors_icon" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rel_sponsors"
+                android:layout_centerHorizontal="true"
+                android:text="Sponsors" />
+
         </RelativeLayout>
     </GridLayout>
 </RelativeLayout>
