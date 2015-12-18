@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bck"
+    android:background="@drawable/login_pic"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
-
 
     <RelativeLayout
         android:id="@+id/linear1"
@@ -14,9 +13,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="#ef6c00">
-
-
-
 
         <TextView
             android:id="@+id/textView1"
@@ -27,20 +23,13 @@
             android:textColor="#ffffff"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
-
     </RelativeLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/linear1"
+        android:layout_marginTop="45dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:id="@+id/frame_signup">
-
-    </FrameLayout>
-
-
-
-
+        android:id="@+id/frame_signup"/>
 </RelativeLayout>
