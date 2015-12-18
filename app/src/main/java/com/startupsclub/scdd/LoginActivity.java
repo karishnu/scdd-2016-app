@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.startupsclub.scdd.Fragments.ForgotPass_Frag1;
 import com.startupsclub.scdd.web.PostRequest;
 import com.startupsclub.scdd.web.PostRequest.PostRequestResponseHandler;
 import com.startupsclub.scdd.web.Sync;
@@ -83,6 +84,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
 
     public void forgot_password(View view) {
         // forgot password code here
+        startActivity(new Intent(this, ForgotPassActivity.class));
     }
 
     public void signup(View view) {
@@ -99,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             JSONObject jObject = new JSONObject(jSONresponse);
             Log.e("Json response", jObject.toString());
             JSONArray jArray = jObject.getJSONArray("login");
-
 
             JSONObject jTemp = jArray.getJSONObject(0);
             status = jTemp.getString("status");
