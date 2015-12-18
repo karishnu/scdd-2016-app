@@ -2,58 +2,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_pic"
+
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/rel1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:background="#ef6c00">-->
 
-        <!--<TextView-->
-            <!--android:id="@+id/textView1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="SCDD-2016"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-            <!--android:textColor="#ffffff"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_centerHorizontal="true" />-->
-
-    <!--</RelativeLayout>-->
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/login_background">
-        <!--android:layout_below="@+id/rel1"-->
+        android:layout_marginTop="10dp"
 
+        android:background="@drawable/login_background"
+        android:id="@+id/relativeLayout">
 
         <RelativeLayout
             android:id="@+id/relu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp">
-
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/username_edtext"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/simple_round_black"
-                android:hint="Enter your name"
-                android:text="test@gmail.com"
+                android:hint="Username"
                 android:inputType="text"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp">
                 <requestFocus />
             </EditText>
-
+            </android.support.design.widget.TextInputLayout>
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
@@ -75,17 +59,19 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="3dp">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/passwd_edtext"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/simple_round_black"
                 android:hint="Password"
-                android:text="12345"
                 android:inputType="textPassword"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"/>
-
+            </android.support.design.widget.TextInputLayout>
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
@@ -132,20 +118,74 @@
             android:text="Lost your password?"
             android:textSize="12sp" />
 
+
+    <RelativeLayout
+        android:id="@+id/social_register_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_bt"
+
+        android:layout_centerHorizontal="true">
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/login_background"
+        android:layout_below="@+id/forgot_passwd_tv"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/fb_small"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/f_logo__blue_144"
+                android:contentDescription="Facebook Login" />
+
+            <ImageButton
+                android:id="@+id/tw_login_small"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/twitter_small_150"
+                android:contentDescription="Twitter Login" />
+
+            <ImageButton
+                android:id="@+id/google_small"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/btn_google_normal_132"
+                android:contentDescription="Google Login" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/newusr_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/forgot_passwd_tv"
+            android:layout_gravity="center"
             android:onClick="signup"
-            android:text="New User"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="12sp"
-            android:paddingRight="10dp"
-            android:paddingBottom="5dp"/>
+            android:text="New User? Register Here"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bottom_text"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
-
-
 </RelativeLayout>
