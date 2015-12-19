@@ -200,6 +200,10 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.home_cities,fragment,"1st page")
                 .commit();
     }
-
-
+    public void speakerclick(View view){
+        Fragment fragment = new SpeakerFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_cities,fragment,"1st page")
+                .commit();
+    }
 }
