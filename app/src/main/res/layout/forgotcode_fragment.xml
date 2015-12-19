@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_pic"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
@@ -13,8 +12,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="45dp"
-        android:paddingBottom="15dp"
-        android:background="@drawable/login_background">
+        android:background="@drawable/login_background"
+        android:paddingBottom="15dp">
 
         <RelativeLayout
             android:id="@+id/relu"
@@ -23,28 +22,30 @@
             android:layout_margin="15dp">
 
             <TextView
+                android:id="@+id/tv_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_email"
-                android:text="An email was sent to blabla.com"
-                android:layout_above="@+id/verification_code"
-                />
+                android:layout_above="@+id/ver_code"
+                android:text="An email was sent to blabla.com" />
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/ver_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp">
-            <EditText
-                android:id="@+id/verification_code"
 
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/simple_round_black"
-                android:hint="Enter Verification Code"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:inputType="number">
+                <EditText
+                    android:id="@+id/verification_code"
 
-            </EditText>
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/simple_round_black"
+                    android:hint="Enter Verification Code"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+                </EditText>
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
@@ -63,12 +64,12 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_below="@+id/relp"
-            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/submit_button"
-            android:visibility="invisible"/>
+            android:layout_below="@+id/relp"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 </RelativeLayout>
