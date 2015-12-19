@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <RelativeLayout
@@ -12,62 +13,82 @@
         android:layout_marginBottom="34dp"
         android:background="@drawable/login_background">
 
-    <EditText
-        android:id="@+id/username_edtext"
-        android:layout_width="fill_parent"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:background="@drawable/simple_round_black"
-        android:hint="Preffered Username"
-        android:inputType="text">
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/password_edtext"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_below="@+id/username_edtext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="3dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:background="@drawable/simple_round_black"
-        android:hint="Password"
-        android:inputType="textPassword"/>
-
-        <EditText
-            android:id="@+id/repassword_edtext"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/x_username_edtext"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_below="@+id/password_edtext"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="3dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:background="@drawable/simple_round_black"
-            android:hint="Re-Type Password"
-            android:inputType="textPassword"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/username_edtext"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/simple_round_black"
+                android:hint="Preffered Username"
+                android:inputType="text"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <requestFocus />
+            </EditText>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/x_password_edtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/x_username_edtext">
+
+            <EditText
+                android:id="@+id/password_edtext"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/simple_round_black"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/x_repassword_edtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/x_password_edtext">
+
+            <EditText
+                android:id="@+id/repassword_edtext"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/simple_round_black"
+                android:hint="Re-Type Password"
+                android:inputType="textPassword"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/register_bt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/repassword_edtext"
+            android:layout_below="@+id/x_repassword_edtext"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
@@ -79,21 +100,21 @@
             android:id="@+id/signin_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_below="@+id/register_bt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:onClick="signin"
+            android:paddingTop="10dp"
             android:text="Sign In"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
             android:layout_alignTop="@+id/register_bt"
             android:layout_centerHorizontal="true"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
     </RelativeLayout>
 
 </RelativeLayout>
