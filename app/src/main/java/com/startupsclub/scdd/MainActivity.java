@@ -206,4 +206,10 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.home_cities,fragment,"1st page")
                 .commit();
     }
+    public void sponsorclick(View view){
+        Fragment fragment = new SponsorFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_cities,fragment,"1st page")
+                .commit();
+    }
 }
