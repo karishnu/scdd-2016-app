@@ -55,6 +55,7 @@
                 android:id="@+id/rel_venue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="venueclick"
                 android:padding="10dp">
 
                 <ImageView

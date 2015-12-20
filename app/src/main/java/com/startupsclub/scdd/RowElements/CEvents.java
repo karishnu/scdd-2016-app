@@ -10,13 +10,15 @@ public class CEvents {
     String day;
     String title;
     String venue;
+    String loc;
 
-   public  CEvents(String year,String date,String day,String title,String venue) {
+   public  CEvents(String year,String date,String day,String title,String venue,String loc) {
         this.year = year;
         this.date =date;
         this.day=day;
         this.title=title;
         this.venue=venue;
+        this.loc=loc;
     }
     public String get_year(){
         return year;
@@ -34,6 +36,7 @@ public class CEvents {
     public String get_venue(){
         return venue;
     }
+    public String get_venue_location(){ return loc; }
 
 
 }

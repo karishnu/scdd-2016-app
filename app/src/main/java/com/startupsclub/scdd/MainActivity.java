@@ -23,6 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.startupsclub.scdd.Fragments.VenueFrag;
+import com.startupsclub.scdd.RowElements.CitiesGeoloc;
 import com.startupsclub.scdd.RowElements.City;
 import com.startupsclub.scdd.Adapters.CityRVAdapter;
 import com.startupsclub.scdd.web.Sync;
@@ -219,4 +221,21 @@ public class MainActivity extends AppCompatActivity
         i.setData(Uri.parse(url));
         startActivity(i);
     }
+
+    public void venueclick(View view)
+    {
+        CitiesGeoloc cg=new CitiesGeoloc();
+        Bundle b=new Bundle();
+        b.putString("city_name",city_name);
+        b.putFloat("latitude",cg.getLatitude(city_name));
+        b.putFloat("longitude",cg.getLongitude(city_name));
+        Fragment fragment = new VenueFrag();
+        fragment.setArguments(b);
+        getSupportFragmentManager().beginTransaction()
+                .addToBackStack("map")
+                .replace(R.id.home_cities,fragment,"1st page")
+                .commit();
+    }
+
+
 }
