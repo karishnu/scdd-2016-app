@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,9 +51,23 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
+
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View header=navigationView.getHeaderView(0);
+
+        nav_head_email = (TextView)header.findViewById(R.id.nav_head_email);
+        nav_head_name = (TextView)header.findViewById(R.id.nav_head_name);
+        name_email_prefs = getSharedPreferences("login_data",MODE_PRIVATE);
+
+        Log.e("ad",name_email_prefs.getString("username","username"));
+        nav_head_email.setText(name_email_prefs.getString("username","username"));
+
+        SharedPreferences pref=getSharedPreferences("user_data",0);
+        nav_head_name.setText(pref.getString("first_name"," ")+" "+pref.getString("last_name"," "));
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -101,10 +116,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        nav_head_email = (TextView) findViewById(R.id.nav_head_email);
-        nav_head_name = (TextView) findViewById(R.id.nav_head_name);
-        name_email_prefs = getSharedPreferences("login_data",MODE_PRIVATE);
-        nav_head_name.setText(name_email_prefs.getString("username","username"));
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
