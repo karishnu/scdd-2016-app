@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
 
             pref.commit();
             new Sync(username, this).setListener(this);
-            finish();
+
         }
         else
         {
@@ -151,6 +151,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             Toast.makeText(this, "Error while syncing", Toast.LENGTH_SHORT).show();
         }
         startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
     public void progressbarvisiblity(Boolean visible){
         if (visible){
