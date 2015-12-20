@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+        if (getSupportFragmentManager().getBackStackEntryCount()<=0){
+            finish();
         }
     }
 
@@ -136,12 +140,14 @@ public class MainActivity extends AppCompatActivity
                 fragment = new Home();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
                         .commit();
                 break;
             case 1:
                 fragment = new Profile();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
                         .commit();
                 break;
             case 2:
@@ -153,12 +159,14 @@ public class MainActivity extends AppCompatActivity
                 fragment = new TermsFragment();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
                         .commit();
                 break;
             case 4:
                 fragment = new Privacy();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
                         .commit();
                 break;
             case 5:
@@ -175,6 +183,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new EventsFragment();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.home_cities,fragment,"1st page")
+                        .addToBackStack(null)
                         .commit();
                 break;
         }
@@ -191,18 +200,21 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new AgendaFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_cities,fragment,"1st page")
+                .addToBackStack(null)
                 .commit();
     }
     public void speakerclick(View view){
         Fragment fragment = new SpeakerFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_cities,fragment,"1st page")
+                .addToBackStack(null)
                 .commit();
     }
     public void sponsorclick(View view){
         Fragment fragment = new SponsorFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_cities,fragment,"1st page")
+                .addToBackStack(null)
                 .commit();
     }
     public void ticketclick(View view){
@@ -212,10 +224,7 @@ public class MainActivity extends AppCompatActivity
         startActivity(i);
     }
 
-    public void venueclick(View view)
-    {
-
-
+    public void venueclick(View view) {
         LocalDB db=new LocalDB(this);
         VenueDetails vd=db.getVenueDetailsByCity(city_name);
         Bundle b=new Bundle();
