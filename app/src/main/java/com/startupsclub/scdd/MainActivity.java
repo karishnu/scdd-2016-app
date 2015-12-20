@@ -3,6 +3,7 @@ package com.startupsclub.scdd;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -211,5 +212,11 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_cities,fragment,"1st page")
                 .commit();
+    }
+    public void ticketclick(View view){
+        String url = "https://www.eventshigh.com/detail/bangalore/1f53abf12a4bc1b30406e5049dab946a";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 }
