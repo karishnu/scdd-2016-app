@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity implements Sync.SyncComple
         intent = new Intent(this, LoginActivity.class);
 
         if (username != null && password != null) {
-            new Sync(username, this).setListener(this);
+            new Sync(this).setListener(this);
         }
         else {
             finish();

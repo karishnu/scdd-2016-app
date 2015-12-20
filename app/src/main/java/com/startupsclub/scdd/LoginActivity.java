@@ -48,14 +48,15 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
         login_button = (Button) findViewById(R.id.login_button);
         ed1 = (EditText) findViewById(R.id.username_edtext);
         ed2 = (EditText) findViewById(R.id.passwd_edtext);
-        username = ed1.getText().toString();
-        password = ed2.getText().toString();
+
     }
 
 
     public void login(View view) {
         //Perform login task here.
         //finish();
+        username = ed1.getText().toString();
+        password = ed2.getText().toString();
         if (attempt_login()) {
 
             progressbarvisiblity(true);
@@ -124,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             pref.putString("password", password);
 
             pref.commit();
-            new Sync(username, this).setListener(this);
+            new Sync(this).setListener(this);
 
         }
         else

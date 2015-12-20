@@ -24,9 +24,9 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
     Context context;
     private SyncCompleteResponder resposeHandler;
 
-    public Sync(String username, Context context) {
+    public Sync(Context context) {
         this.context = context;
-
+      String username= context.getSharedPreferences("login_data",0).getString("username"," ");
         Hashtable<String, String> ht = new Hashtable<>();
         ht.put("username", username);
 
