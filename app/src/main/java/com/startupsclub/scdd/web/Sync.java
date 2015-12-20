@@ -7,6 +7,7 @@ import android.util.Log;
 import com.startupsclub.scdd.Database.LocalDB;
 import com.startupsclub.scdd.RowElements.Agenda;
 import com.startupsclub.scdd.RowElements.CEvents;
+import com.startupsclub.scdd.RowElements.VenueDetails;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +79,7 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
 
             jTempArray = jEventsdata.getJSONArray("events_data");
             ArrayList<CEvents> al = new ArrayList<>();
+            ArrayList<VenueDetails> al2 = new ArrayList<>();
 
             for (int i = 0; i < jTempArray.length(); i++) {
 
@@ -88,6 +90,8 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
                     String title = jTemp.getString("title");
                     String place = jTemp.getString("place");
                     String venue=jTemp.getString("venue");
+                    Float latitude=Float.parseFloat(jTemp.getString("latitude"));
+                    Float longitude=Float.parseFloat(jTemp.getString("longitude"));
                     String year = jTemp.getString("year");
                     String date = jTemp.getString("date");
                     String weekday = jTemp.getString("weekday");
@@ -95,11 +99,13 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
                     //Update local database for events here for each row retrieved
                     CEvents ce = new CEvents(year, date, weekday, title, place,venue);
                     al.add(ce);
+                    VenueDetails vd=new VenueDetails(place,venue,latitude,longitude);
+                   al2.add(vd);
                     LocalDB db = new LocalDB(context);
-                    db.updateEventsData(al);
+                    db.updateEventsData(al,al2);
                 }
-
             }
+
 
             //Retrieving agenda data
 
@@ -123,6 +129,7 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
                 }
 
             }
+
             resposeHandler.syncCompleteResponder(true);
 
         } catch (JSONException e) {

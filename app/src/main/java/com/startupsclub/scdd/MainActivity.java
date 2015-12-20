@@ -1,13 +1,10 @@
 package com.startupsclub.scdd;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,20 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.startupsclub.scdd.Database.LocalDB;
 import com.startupsclub.scdd.Fragments.VenueFrag;
-import com.startupsclub.scdd.RowElements.CitiesGeoloc;
-import com.startupsclub.scdd.RowElements.City;
-import com.startupsclub.scdd.Adapters.CityRVAdapter;
+import com.startupsclub.scdd.RowElements.VenueDetails;
 import com.startupsclub.scdd.web.Sync;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,Sync.SyncCompleteResponder {
@@ -224,11 +214,14 @@ public class MainActivity extends AppCompatActivity
 
     public void venueclick(View view)
     {
-        CitiesGeoloc cg=new CitiesGeoloc();
+
+
+        LocalDB db=new LocalDB(this);
+        VenueDetails vd=db.getVenueDetailsByCity(city_name);
         Bundle b=new Bundle();
         b.putString("city_name",city_name);
-        b.putFloat("latitude",cg.getLatitude(city_name));
-        b.putFloat("longitude",cg.getLongitude(city_name));
+        b.putFloat("latitude",vd.getLatitude());
+        b.putFloat("longitude",vd.getLongitude());
         Fragment fragment = new VenueFrag();
         fragment.setArguments(b);
         getSupportFragmentManager().beginTransaction()
