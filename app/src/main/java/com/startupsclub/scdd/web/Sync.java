@@ -68,10 +68,16 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
                 String designation = jTemp.getString("designation");
                 String address = jTemp.getString("address");
 
-                //Update local database for user data here.
+                SharedPreferences.Editor preferences=context.getSharedPreferences("user_data",0).edit();
+                preferences.putString("email",email);
+                preferences.putString("first_name",fn);
+                preferences.putString("last_name",ln);
+                preferences.putString("phone",phone);
+                preferences.putString("company_name",com_name);
+                preferences.putString("designation",designation);
+                preferences.putString("address",address);
+                preferences.commit();
 
-                LocalDB db = new LocalDB(context);
-                db.updateUserData(username, email, fn, ln, phone, com_name, designation, address);
 
             }
 
