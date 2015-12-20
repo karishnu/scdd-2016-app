@@ -111,7 +111,6 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             status = "201";
             e.printStackTrace();
         }
-        progressbarvisiblity(false);
         if (status.equals("0")){
             ed2.setError("Wrong Password");
         progressbarvisiblity(false);}
@@ -158,7 +157,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
         pb.setVisibility(View.VISIBLE);
         login_button.setVisibility(View.INVISIBLE);}
         else {
-            pb.setVisibility(View.INVISIBLE);
+            pb.setVisibility(View.GONE);
             login_button.setVisibility(View.VISIBLE);
         }
     }
