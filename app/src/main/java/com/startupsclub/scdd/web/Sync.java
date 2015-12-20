@@ -87,12 +87,13 @@ public class Sync implements PostRequest.PostRequestResponseHandler {
 
                     String title = jTemp.getString("title");
                     String place = jTemp.getString("place");
+                    String venue=jTemp.getString("venue");
                     String year = jTemp.getString("year");
                     String date = jTemp.getString("date");
                     String weekday = jTemp.getString("weekday");
 
                     //Update local database for events here for each row retrieved
-                    CEvents ce = new CEvents(year, date, weekday, title, place);
+                    CEvents ce = new CEvents(year, date, weekday, title, place,venue);
                     al.add(ce);
                     LocalDB db = new LocalDB(context);
                     db.updateEventsData(al);
