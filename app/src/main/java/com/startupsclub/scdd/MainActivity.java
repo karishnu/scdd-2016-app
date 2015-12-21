@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity
 
         View header = navigationView.getHeaderView(0);
 
+
         nav_head_email = (TextView) header.findViewById(R.id.nav_head_email);
         nav_head_name = (TextView) header.findViewById(R.id.nav_head_name);
         nav_head_photo = (CircleImageView) header.findViewById(R.id.nav_head_photo);
@@ -86,6 +87,19 @@ public class MainActivity extends AppCompatActivity
         nav_head_email.setText(name_email_prefs.getString("username", "username"));
 
         putPicture();
+       CircleImageView im=(CircleImageView) header.findViewById(R.id.nav_head_photo);
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Image","Image clickedd");
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
+            }
+        });
+
 
         SharedPreferences pref = getSharedPreferences("user_data", 0);
         nav_head_name.setText(pref.getString("first_name", " ") + " " + pref.getString("last_name", " "));
