@@ -364,6 +364,18 @@ public class MainActivity extends AppCompatActivity
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, cal.getTime().getTime());
         startActivity(calendarIntent);
     }
+    public void shareclick(View view){
+        LocalDB db = new LocalDB(this);
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Join me at Startups Club DEMO DAY 2016 - "+city_name+"! \n"+
+            "Date - "+db.getDateDetailsByCity(city_name)+", 2016\n"+
+            "Time - 9.30 AM to 5.30 PM\n"+
+            "Venue - "+db.getVenueDetailsByCity(city_name).getAddress()+"\n"+
+            "Tickets - https://goo.gl/aEVslf \n"+
+            "Website - http://startupsclub.org/demoday/");
+        startActivity(sharingIntent);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

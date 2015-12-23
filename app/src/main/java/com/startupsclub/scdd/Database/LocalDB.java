@@ -207,6 +207,20 @@ public class LocalDB extends SQLiteOpenHelper {
                 return new VenueDetails(city, venue, latitude, longitude);
 
         }
+    public String getDateDetailsByCity(String city)
+    {
+        SQLiteDatabase readableDB = this.getReadableDatabase();
+        String where="place"+"='"+city+"'";
+
+        Cursor cursor = readableDB.query(tEvents_data, null, where, null, null, null, null, null);
+        Log.e("size",cursor.getCount()+"");
+
+        cursor.moveToFirst();
+        String date = cursor.getString(cursor.getColumnIndex("date"));
+
+        return date;
+    }
+
 
 
 
