@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ import com.startupsclub.scdd.web.Sync;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -51,8 +53,15 @@ public class MainActivity extends AppCompatActivity
     Intent intent;
     String city_name;
     SharedPreferences name_email_prefs;
-    CircleImageView nav_head_photo;
     private static int RESULT_LOAD_IMAGE = 1;
+    private final int SELECT_PHOTO = 1;
+    private CircleImageView imageView;
+    public static Bitmap selectedProfileImage;
+    int PROFILE = R.drawable.avatar_user;
+
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String PREFS_LAST_IMG = "prefs_last_img";
+    public static SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +73,6 @@ public class MainActivity extends AppCompatActivity
             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         subtitle = (TextView) findViewById(R.id.subtitle);
-
-
-        navigationMenuAction(0);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -82,23 +88,19 @@ public class MainActivity extends AppCompatActivity
 
         nav_head_email = (TextView) header.findViewById(R.id.nav_head_email);
         nav_head_name = (TextView) header.findViewById(R.id.nav_head_name);
-        nav_head_photo = (CircleImageView) header.findViewById(R.id.nav_head_photo);
         name_email_prefs = getSharedPreferences("login_data", MODE_PRIVATE);
 
         Log.e("ad", name_email_prefs.getString("username", "username"));
         nav_head_email.setText(name_email_prefs.getString("username", "username"));
 
-        putPicture();
-       CircleImageView im=(CircleImageView) header.findViewById(R.id.nav_head_photo);
-        im.setOnClickListener(new View.OnClickListener() {
+        imageView = (CircleImageView) findViewById(R.id.profile_pic);
+        retrievePreferences();
+
+        Button btnChange = (Button) findViewById(R.id.btnChange);
+        btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Image","Image clickedd");
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                selectPic();
             }
         });
 
@@ -108,6 +110,67 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    public void selectPic() {
+        // Create intent to Open Image applications like Gallery, Google Photos
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+    }
+
+    private void retrievePreferences() {
+        //Profile Pic
+
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        if (sharedPreferences.contains(PREFS_LAST_IMG)) {
+
+            String imageUriString = sharedPreferences.getString(PREFS_LAST_IMG, null);
+
+            Uri profilePicUri = Uri.parse(imageUriString);
+            final InputStream imageStream;
+
+            try {
+                imageStream = getContentResolver().openInputStream(profilePicUri);
+                selectedProfileImage = BitmapFactory.decodeStream(imageStream);
+                imageView.setImageBitmap(selectedProfileImage); //set the profile pic here
+
+            } catch (FileNotFoundException e) {
+                Toast.makeText(MainActivity.this, "The Profile Pic has gone missing.", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+        }else{
+            imageView.setImageResource(PROFILE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        switch (requestCode) {
+            case SELECT_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        final InputStream imageStream;
+                        final Uri imageUri = imageReturnedIntent.getData();
+                        //save to preferences
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(PREFS_LAST_IMG, imageUri.toString());
+                        editor.apply();
+                        imageStream = getContentResolver().openInputStream(imageUri);
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
+                        imageView.setImageBitmap(selectedImage);
+
+                    } catch (FileNotFoundException e) {
+                        Toast.makeText(MainActivity.this, "The Profile Pic has gone missing.", Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+
+                }
+        }
     }
 
     @Override
@@ -376,37 +439,4 @@ public class MainActivity extends AppCompatActivity
             "Website - http://startupsclub.org/demoday/");
         startActivity(sharingIntent);
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            SharedPreferences.Editor pref = getSharedPreferences("login_data", MODE_PRIVATE).edit();
-            pref.putString("photo", picturePath);
-            pref.commit();
-            putPicture();
-        }
-    }
-
-    public void putPicture() {
-        String picturePath;
-        SharedPreferences prefs = this.getSharedPreferences("login_data", Context.MODE_PRIVATE);
-        picturePath = prefs.getString("photo", "nopic");
-        if (picturePath != "nopic") {
-            nav_head_photo.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-        }
-    }
-
 }
