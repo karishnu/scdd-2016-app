@@ -23,6 +23,8 @@ public class VenueFrag extends Fragment implements OnMapReadyCallback {
 
     String city_name;
     Float latitude,longitude;
+    String address;
+
     private GoogleMap mMap;
 
     @Override
@@ -34,9 +36,10 @@ public class VenueFrag extends Fragment implements OnMapReadyCallback {
        city_name= b.getString("city_name");
         latitude=b.getFloat("latitude");
         longitude=b.getFloat("longitude");
+        address=b.getString("address");
 
         TextView tv=(TextView)rootView.findViewById(R.id.tv_map);
-        tv.setText(city_name);
+        tv.setText(address);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
@@ -51,7 +54,7 @@ public class VenueFrag extends Fragment implements OnMapReadyCallback {
 
         // Add a marker in city and move the camera
         LatLng cityLoc = new LatLng(latitude,longitude);
-        mMap.addMarker(new MarkerOptions().position(cityLoc).title(city_name));
+        mMap.addMarker(new MarkerOptions().position(cityLoc).title(address));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cityLoc));
     }
 }
