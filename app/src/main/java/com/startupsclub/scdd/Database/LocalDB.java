@@ -11,10 +11,7 @@ import com.startupsclub.scdd.RowElements.Agenda;
 import com.startupsclub.scdd.RowElements.CEvents;
 import com.startupsclub.scdd.RowElements.VenueDetails;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
 
 /**
  * Created by Amartya on 12/13/2015.
@@ -210,6 +207,7 @@ public class LocalDB extends SQLiteOpenHelper {
                 return new VenueDetails(city, venue, latitude, longitude);
 
         }
+
 
 
 }
