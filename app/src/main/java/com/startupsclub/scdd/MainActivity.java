@@ -283,6 +283,7 @@ public class MainActivity extends AppCompatActivity
         b.putString("city_name", city_name);
         b.putFloat("latitude", vd.getLatitude());
         b.putFloat("longitude", vd.getLongitude());
+        b.putString("address",vd.getAddress());
         Fragment fragment = new VenueFrag();
         fragment.setArguments(b);
         getSupportFragmentManager().beginTransaction()
