@@ -53,8 +53,8 @@ public class VenueFrag extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
 
         // Add a marker in city and move the camera
-        LatLng cityLoc = new LatLng(latitude,longitude);
-        mMap.addMarker(new MarkerOptions().position(cityLoc).title(address));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cityLoc));
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude) , 16.0f) );
+        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(address));
+        //mMap.animateCamera(CameraUpdateFactory.zoomTo(16), 2000, null);
     }
 }

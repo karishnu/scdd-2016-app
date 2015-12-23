@@ -29,4 +29,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:8.3.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.kbeanie:image-chooser-library:1.5.2@aar'
+    compile 'com.github.clans:fab:1.6.2'
 }

@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.CalendarContract;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
@@ -38,6 +39,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -298,6 +300,69 @@ public class MainActivity extends AppCompatActivity
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(i, RESULT_LOAD_IMAGE);
+    }
+
+    public void calendarclick(View view) {
+        LocalDB db = new LocalDB(this);
+        VenueDetails vd = db.getVenueDetailsByCity(city_name);
+
+        Intent calendarIntent = new Intent(Intent.ACTION_INSERT);
+        calendarIntent.setData(CalendarContract.Events.CONTENT_URI);
+        calendarIntent.putExtra(CalendarContract.Events.TITLE, "Startups Club DEMO DAY, "+city_name);
+        calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, vd.getAddress());
+        Calendar cal = Calendar.getInstance();
+
+        switch (city_name){
+            case "Bangalore" :
+                cal.set(Calendar.DAY_OF_MONTH, 16);
+                cal.set(Calendar.MONTH, 0);
+                break;
+            case "Chennai" :
+                cal.set(Calendar.DAY_OF_MONTH, 20);
+                cal.set(Calendar.MONTH, 1);
+                break;
+            case "Hyderabad" :
+                cal.set(Calendar.DAY_OF_MONTH, 19);
+                cal.set(Calendar.MONTH, 2);
+                break;
+            case "Coimbatore" :
+                cal.set(Calendar.DAY_OF_MONTH, 16);
+                cal.set(Calendar.MONTH, 3);
+                break;
+            case "Mumbai" :
+                cal.set(Calendar.DAY_OF_MONTH, 21);
+                cal.set(Calendar.MONTH, 4);
+                break;
+            case "Delhi" :
+                cal.set(Calendar.DAY_OF_MONTH, 18);
+                cal.set(Calendar.MONTH, 5);
+                break;
+            case "Pune" :
+                cal.set(Calendar.DAY_OF_MONTH, 16);
+                cal.set(Calendar.MONTH, 6);
+                break;
+            case "Kochi" :
+                cal.set(Calendar.DAY_OF_MONTH, 20);
+                cal.set(Calendar.MONTH, 7);
+                break;
+            case "Ahmedabad" :
+                cal.set(Calendar.DAY_OF_MONTH, 17);
+                cal.set(Calendar.MONTH, 8);
+                break;
+            case "Vizag" :
+                cal.set(Calendar.DAY_OF_MONTH, 15);
+                cal.set(Calendar.MONTH, 9);
+                break;
+        }
+
+        cal.set(Calendar.YEAR, 2016);
+        cal.set(Calendar.HOUR_OF_DAY, 9);
+        cal.set(Calendar.MINUTE, 30);
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTime().getTime());
+        cal.set(Calendar.HOUR_OF_DAY, 17);
+        cal.set(Calendar.MINUTE, 30);
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, cal.getTime().getTime());
+        startActivity(calendarIntent);
     }
 
     @Override
