@@ -14,13 +14,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Feedback"
+        android:gravity="center"
         android:textSize="50sp"/>
 
+    <TextView
+        android:id="@+id/feed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tw_feedback"
+        android:gravity="center"
+        android:text="Your feedback is important to us.We will use this to improve our quality of service."/>
     <EditText
         android:id="@+id/ed_feedback"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@id/tw_feedback">
+        android:layout_below="@id/feed">
     </EditText>
 
     <Button
