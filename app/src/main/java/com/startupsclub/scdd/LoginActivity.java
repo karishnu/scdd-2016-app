@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             status = "201";
             e.printStackTrace();
         }
+        progressbarvisiblity(false);
         if (status.equals("0")){
             ed2.setError("Wrong Password");
         progressbarvisiblity(false);}
@@ -125,6 +126,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
             pref.putString("password", password);
 
             pref.commit();
+            progressbarvisiblity(true);
             new Sync(this).setListener(this);
 
         }
@@ -147,6 +149,7 @@ public class LoginActivity extends AppCompatActivity implements PostRequestRespo
 
     public  void syncCompleteResponder(Boolean status)
     {
+        progressbarvisiblity(false);
         if(status==false) {
             Toast.makeText(this, "Error while syncing", Toast.LENGTH_SHORT).show();
         }
