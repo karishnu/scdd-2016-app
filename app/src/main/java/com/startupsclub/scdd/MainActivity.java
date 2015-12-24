@@ -53,15 +53,7 @@ public class MainActivity extends AppCompatActivity
     Intent intent;
     String city_name;
     SharedPreferences name_email_prefs;
-    private static int RESULT_LOAD_IMAGE = 1;
-    private final int SELECT_PHOTO = 1;
-    private CircleImageView imageView;
-    public static Bitmap selectedProfileImage;
-    int PROFILE = R.drawable.avatar_user;
 
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String PREFS_LAST_IMG = "prefs_last_img";
-    public static SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,84 +85,11 @@ public class MainActivity extends AppCompatActivity
         Log.e("ad", name_email_prefs.getString("username", "username"));
         nav_head_email.setText(name_email_prefs.getString("username", "username"));
 
-        imageView = (CircleImageView) findViewById(R.id.profile_pic);
-        retrievePreferences();
-
-        Button btnChange = (Button) findViewById(R.id.btnChange);
-        btnChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectPic();
-            }
-        });
-
-
         SharedPreferences pref = getSharedPreferences("user_data", 0);
         nav_head_name.setText(pref.getString("first_name", " ") + " " + pref.getString("last_name", " "));
 
         navigationView.setNavigationItemSelectedListener(this);
-
-    }
-
-    public void selectPic() {
-        // Create intent to Open Image applications like Gallery, Google Photos
-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-    }
-
-    private void retrievePreferences() {
-        //Profile Pic
-
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        if (sharedPreferences.contains(PREFS_LAST_IMG)) {
-
-            String imageUriString = sharedPreferences.getString(PREFS_LAST_IMG, null);
-
-            Uri profilePicUri = Uri.parse(imageUriString);
-            final InputStream imageStream;
-
-            try {
-                imageStream = getContentResolver().openInputStream(profilePicUri);
-                selectedProfileImage = BitmapFactory.decodeStream(imageStream);
-                imageView.setImageBitmap(selectedProfileImage); //set the profile pic here
-
-            } catch (FileNotFoundException e) {
-                Toast.makeText(MainActivity.this, "The Profile Pic has gone missing.", Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
-        }else{
-            imageView.setImageResource(PROFILE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-
-        switch (requestCode) {
-            case SELECT_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    try {
-                        final InputStream imageStream;
-                        final Uri imageUri = imageReturnedIntent.getData();
-                        //save to preferences
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(PREFS_LAST_IMG, imageUri.toString());
-                        editor.apply();
-                        imageStream = getContentResolver().openInputStream(imageUri);
-                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-
-                        imageView.setImageBitmap(selectedImage);
-
-                    } catch (FileNotFoundException e) {
-                        Toast.makeText(MainActivity.this, "The Profile Pic has gone missing.", Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
-
-
-                }
-        }
+        navigationMenuAction(0);
     }
 
     @Override
@@ -257,11 +176,8 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 break;
             case 1:
-                fragment = new Profile();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_cities, fragment, "1st page")
-                        .addToBackStack(null)
-                        .commit();
+                Intent profileintent = new Intent(this,ProfileUpdateActivity.class);
+                startActivity(profileintent);
                 break;
             case 2:
                 SharedPreferences pref = getSharedPreferences("login_data", MODE_PRIVATE);
@@ -357,13 +273,7 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    public void ImagePick(View view) {
-        Intent i = new Intent(
-                Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-        startActivityForResult(i, RESULT_LOAD_IMAGE);
-    }
 
     public void calendarclick(View view) {
         LocalDB db = new LocalDB(this);

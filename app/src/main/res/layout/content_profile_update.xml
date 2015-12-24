@@ -11,47 +11,47 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.startupsclub.scdd.ProfileUpdateActivity"
     tools:showIn="@layout/activity_profile_update">
+
     <RelativeLayout
         android:id="@+id/rela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true">
+
         <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"
-            android:src="@drawable/ic_account_circle_white_18dp"
-            android:onClick="ImagePick"/>
-        <TextView
-            android:id="@+id/change"
+            android:id="@+id/profile_pic"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/avatar_user" />
+
+        <Button
+            android:id="@+id/btnChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Change"
-            android:textSize="20sp"
-            android:textColor="#000000"/>
+            android:layout_below="@+id/profile_pic"
+            android:layout_centerHorizontal="true"
+            android:text="Change" />
+
     </RelativeLayout>
+
     <TextView
+        android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/tv_username"
         android:layout_below="@+id/rela"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-         />
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView"
         android:layout_alignParentRight="true"
-        android:layout_above="@+id/update_bt"
-        android:layout_below="@+id/tv_username"
-       >
+        android:layout_below="@+id/tv_username">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -62,11 +62,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rel1">
-            <EditText
-                android:id="@+id/first_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="First Name"/>
+
+                <EditText
+                    android:id="@+id/first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First Name"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -74,42 +75,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mat1">
-            <EditText
-                android:id="@+id/last_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Last Name"
-                />
-                </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/mat3"
-                android:layout_below="@+id/mat2">
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="E-Mail Address"
-
-               />
+                <EditText
+                    android:id="@+id/last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Last Name" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/mat3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/mat2">
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-Mail Address"
+                    android:inputType="textEmailAddress" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:id="@+id/mat4"
-                android:layout_below="@+id/mat3">
-            <EditText
-                android:id="@+id/mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="Mobile"
-                />
+                android:layout_below="@+id/mat3">
+
+                <EditText
+                    android:id="@+id/mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -117,12 +116,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mat4">
-            <EditText
-                android:id="@+id/com_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Company Name"
-                />
+
+                <EditText
+                    android:id="@+id/com_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Company Name" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -130,12 +129,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mat5">
-            <EditText
-                android:id="@+id/designation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Designation"
-               />
+
+                <EditText
+                    android:id="@+id/designation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Designation" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -143,42 +142,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mat6">
-            <EditText
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
-                android:hint="Your Address"/>
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Your Address"
+                    android:inputType="textPostalAddress" />
             </android.support.design.widget.TextInputLayout>
 
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/update_bt"
-                android:background="@drawable/layout_round_orange_button"
-                android:textColor="#ffffff"
-               android:layout_below="@+id/mat7"
-                />
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar"
-                android:layout_alignTop="@+id/update_bt"
-                android:layout_centerHorizontal="true"
-                android:visibility="invisible"/>
-
         </RelativeLayout>
-
-
-
-</ScrollView>
-
-
-
-
+    </ScrollView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>
