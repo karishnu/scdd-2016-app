@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.CalendarContract;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -41,6 +42,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     Intent intent;
     String city_name;
     SharedPreferences name_email_prefs;
+    CircleImageView header_image;
 
 
     @Override
@@ -80,16 +83,47 @@ public class MainActivity extends AppCompatActivity
 
         nav_head_email = (TextView) header.findViewById(R.id.nav_head_email);
         nav_head_name = (TextView) header.findViewById(R.id.nav_head_name);
+        header_image = (CircleImageView) header.findViewById(R.id.nav_head_photo);
         name_email_prefs = getSharedPreferences("login_data", MODE_PRIVATE);
 
         Log.e("ad", name_email_prefs.getString("username", "username"));
         nav_head_email.setText(name_email_prefs.getString("username", "username"));
 
-        SharedPreferences pref = getSharedPreferences("user_data", 0);
+        final SharedPreferences pref = getSharedPreferences("user_data", 0);
         nav_head_name.setText(pref.getString("first_name", " ") + " " + pref.getString("last_name", " "));
+
+        header_image_update();
 
         navigationView.setNavigationItemSelectedListener(this);
         navigationMenuAction(0);
+
+        if(pref.getBoolean("profile_edit",true)){
+            new AlertDialog.Builder(this)
+                    .setTitle("Complete Profile")
+                    .setMessage("Your profile seems to be incomplete. Would you like to edit it?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putBoolean("profile_edit",false);
+                            editor.commit();
+                            Intent profile_intent = new Intent(MainActivity.this, ProfileUpdateActivity.class);
+                            startActivity(profile_intent);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putBoolean("profile_edit",false);
+                            editor.commit();
+                            final View coordinatorLayoutView = findViewById(R.id.main_cood);
+
+                            Snackbar
+                                    .make(coordinatorLayoutView, "You can edit your profile later from the 'Profile' page!", Snackbar.LENGTH_LONG)
+                                    .show();
+                        }
+                    })
+                    .show();
+        }
     }
 
     @Override
@@ -180,7 +214,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(profileintent);
                 break;
             case 2:
-                SharedPreferences pref = getSharedPreferences("login_data", MODE_PRIVATE);
                 new Sync(this).setListener(this);
                 Toast.makeText(this, "Sync in progress", Toast.LENGTH_SHORT).show();
                 break;
@@ -204,6 +237,11 @@ public class MainActivity extends AppCompatActivity
                 editor.remove("username");
                 editor.remove("password");
                 editor.remove("photo");
+                editor.commit();
+                pref2 = getSharedPreferences("user_data", MODE_PRIVATE);
+                editor=pref2.edit();
+                editor.remove("profile_edit");
+                editor.remove("prefs_last_img");
                 editor.commit();
                 intent = new Intent(this, LoginActivity.class);
                 finish();
@@ -348,5 +386,23 @@ public class MainActivity extends AppCompatActivity
             "Tickets - https://goo.gl/aEVslf \n"+
             "Website - http://startupsclub.org/demoday/");
         startActivity(sharingIntent);
+    }
+    public void header_image_update(){
+        SharedPreferences sharedPreferences = getSharedPreferences("user_data",MODE_PRIVATE);
+        String image_string = sharedPreferences.getString("prefs_last_img","null");
+        if (image_string != "null"){
+            Uri image_uri = Uri.parse(image_string);
+            try {
+                Log.e("TEST", "header_image_update: try started");
+                InputStream imageStream = getContentResolver().openInputStream(image_uri);
+                Bitmap profile_image = BitmapFactory.decodeStream(imageStream);
+                header_image.setImageBitmap(profile_image);
+            }
+            catch (Exception e){}
+        }
+        else{
+            header_image.setImageResource(R.drawable.avatar_user);
+        }
+
     }
 }

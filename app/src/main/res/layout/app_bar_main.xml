@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.startupsclub.scdd.MainActivity">
+    tools:context="com.startupsclub.scdd.MainActivity"
+    android:id="@+id/main_cood">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

@@ -47,7 +47,7 @@ public class ProfileUpdateActivity extends AppCompatActivity implements PostRequ
     public static Bitmap selectedProfileImage;
     int PROFILE = R.drawable.avatar_user;
 
-    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String MyPREFERENCES = "user_data";
     public static final String PREFS_LAST_IMG = "prefs_last_img";
     public static SharedPreferences sharedPreferences;
 
@@ -179,8 +179,9 @@ public class ProfileUpdateActivity extends AppCompatActivity implements PostRequ
             ht.put("username", getSharedPreferences("login_data", 0).getString("username", "abc"));
 
             new PostRequest(ht, "http://myappserver.netau.net/SCDD/update_profile.php").setListener(ProfileUpdateActivity.this);
-        } else
+        } else {
             ed3.setError("Invalid email");
+        }
     }
 
     public void editable(Boolean value){
