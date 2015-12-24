@@ -4,14 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.startupsclub.scdd.ProfileUpdateActivity"
     tools:showIn="@layout/activity_profile_update">
 
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/rela"
         android:layout_width="wrap_content"
@@ -31,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_pic"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/city_square"
             android:text="Change" />
 
     </RelativeLayout>
@@ -45,23 +56,18 @@
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tv_username">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_username">
 
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/mat1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rel1">
+                >
 
                 <EditText
                     android:id="@+id/first_name"
@@ -154,6 +160,7 @@
 
 
         </RelativeLayout>
+    </RelativeLayout>
     </ScrollView>
     <ProgressBar
         android:id="@+id/progressBar"
