@@ -1,5 +1,6 @@
 package com.startupsclub.scdd;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -56,7 +57,8 @@ public class MainActivity extends AppCompatActivity
     String city_name;
     SharedPreferences name_email_prefs;
     CircleImageView header_image;
-
+    Boolean showToast=true;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,8 +158,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_about:
-                return true;
+
             case R.id.action_feedback:
                 intent = new Intent(this, FeedbackActivity.class);
                 startActivity(intent);
@@ -214,8 +215,28 @@ public class MainActivity extends AppCompatActivity
                 startActivity(profileintent);
                 break;
             case 2:
+               pd=ProgressDialog.show(this, "Sync in progess", "SYNCING", true, true, new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        dialog.dismiss();
+                        Toast.makeText(MainActivity.this,"Sync Cancelled",Toast.LENGTH_SHORT).show();
+                        showToast=false;
+                    }
+                });
+//                AlertDialog ad=new AlertDialog.Builder(context).create();
+//                ad.setTitle(title);
+//                ad.setMessage(message);
+//                ad.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // TODO Auto-generated method stub
+//                        dialog.dismiss();
+//                    }
+//                });
+//                ad.show();
                 new Sync(this).setListener(this);
-                Toast.makeText(this, "Sync in progress", Toast.LENGTH_SHORT).show();
+
                 break;
             case 3:
                 fragment = new TermsFragment();
@@ -258,10 +279,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void syncCompleteResponder(Boolean status) {
-        if (status)
-            Toast.makeText(this, "Sync completed.", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "Error while syncing", Toast.LENGTH_SHORT).show();
+        if (showToast) {
+
+
+            if (status)
+                Toast.makeText(this, "Sync completed.", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "Error while syncing", Toast.LENGTH_SHORT).show();
+
+            pd.dismiss();
+        }
     }
 
     public void agendaclick(View view) {
