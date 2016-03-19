@@ -1,9 +1,9 @@
 <?php
 
-$mysql_host = "mysql7.000webhost.com";
-$mysql_database = "a3628048_scdd";
-$mysql_user = "a3628048_scdd";
-$mysql_password = "project-android-scdd2016";
+$mysql_host = "my*****";
+$mysql_database = "a36280*****";
+$mysql_user = "a36280*****";
+$mysql_password = "proj*****";
 
 $connect = @mysql_connect($mysql_host, $mysql_user, $mysql_password)or die(mysql_error());
 $db = @mysql_select_db($mysql_database,$connect)or die(mysql_error());  
